@@ -1,0 +1,2852 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lớp 10 Tin Học</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-color: rgba(44, 62, 80, 0.9);
+            --secondary-color: rgba(52, 152, 219, 0.9);
+            --accent-color: rgba(231, 76, 60, 0.9);
+            --glass-color: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            --text-color: #333;
+            --light-text: #fff;
+            --success-color: rgba(46, 204, 113, 0.9);
+            --admin-color: rgba(155, 89, 182, 0.9);
+            --pending-color: rgba(243, 156, 18, 0.9);
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            background-attachment: fixed;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Glass Effect */
+        .glass {
+            background: var(--glass-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            border-radius: 15px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(44, 62, 80, 0.85);
+            backdrop-filter: blur(10px);
+            color: var(--light-text);
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .logo-img.has-image img {
+            display: block;
+        }
+
+        .logo-img .placeholder {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .logo-text h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            color: var(--secondary-color);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.05rem;
+            padding: 8px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .notification-badge {
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            position: absolute;
+            top: -5px;
+            right: -5px;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 120px 0;
+            text-align: center;
+            color: var(--light-text);
+            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), 
+                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero .glass {
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(5px);
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+        }
+
+        .btn:hover {
+            background: rgba(52, 152, 219, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        /* Sections */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* About */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-img {
+            flex: 1;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Posts Section */
+        .posts-section {
+            background: rgba(245, 247, 250, 0.7);
+        }
+
+        .posts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .post-card {
+            background: var(--glass-color);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .post-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .post-card:hover .post-image img {
+            transform: scale(1.1);
+        }
+
+        .post-content {
+            padding: 25px;
+        }
+
+        .post-date {
+            font-size: 0.9rem;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .post-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        .post-excerpt {
+            color: rgba(0, 0, 0, 0.7);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Class Info */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--glass-color);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 35px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .card i {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 25px;
+        }
+
+        .card h3 {
+            font-size: 1.7rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Schedule */
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--glass-color);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .schedule-table th, .schedule-table td {
+            padding: 20px 15px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .schedule-table th {
+            background: rgba(44, 62, 80, 0.8);
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .schedule-table tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .schedule-table tr:hover {
+            background: rgba(52, 152, 219, 0.1);
+        }
+
+        .subject {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* Contact */
+        .contact-content {
+            display: flex;
+            gap: 50px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-form {
+            flex: 1;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .contact-item i {
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin-right: 20px;
+            margin-top: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+
+        .form-group textarea {
+            height: 180px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            padding: 60px 0 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 30px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.6rem;
+            margin-bottom: 25px;
+            color: var(--secondary-color);
+            font-weight: 700;
+        }
+
+        .footer-section p {
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            gap: 10px;
+        }
+
+        .page-btn {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .page-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .page-btn.active {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Post Detail Page */
+        .post-detail-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .post-detail-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .post-detail-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .post-detail-meta {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            color: rgba(0, 0, 0, 0.6);
+            margin-bottom: 30px;
+        }
+
+        .post-detail-image {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .post-detail-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .post-detail-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        /* Modals */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            width: 90%;
+            max-width: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .modal-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.8rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            line-height: 1;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        /* Admin Page */
+        .admin-page {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+        }
+
+        .admin-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 25px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-header h1 {
+            color: white;
+            font-size: 2rem;
+        }
+
+        .admin-nav {
+            display: flex;
+            background: rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .admin-tab {
+            padding: 20px 30px;
+            background: none;
+            border: none;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        .admin-tab.active {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            border-bottom-color: var(--secondary-color);
+        }
+
+        .admin-content {
+            padding: 40px;
+            min-height: 500px;
+        }
+
+        .admin-section {
+            display: none;
+        }
+
+        .admin-section.active {
+            display: block;
+        }
+
+        .admin-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .admin-card h3 {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .post-editor {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .post-editor h4 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .image-upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .image-upload-area:hover {
+            border-color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .image-upload-area i {
+            font-size: 3rem;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 15px;
+        }
+
+        .image-preview {
+            display: none;
+            max-width: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px auto;
+        }
+
+        .image-preview img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .user-list {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .user-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .user-role {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .role-admin {
+            background: var(--admin-color);
+            color: white;
+        }
+
+        .role-ctv {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .role-user {
+            background: #95a5a6;
+            color: white;
+        }
+
+        .post-status {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-published {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .status-pending {
+            background: var(--pending-color);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .about-img, .about-text {
+                width: 100%;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .admin-form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: rgba(44, 62, 80, 0.95);
+                backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: 20px 0;
+                text-align: center;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+                z-index: 99;
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .schedule-table {
+                font-size: 0.9rem;
+            }
+            
+            .schedule-table th, .schedule-table td {
+                padding: 15px 10px;
+            }
+            
+            .hero {
+                padding: 80px 0;
+            }
+            
+            section {
+                padding: 70px 0;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .admin-nav {
+                flex-wrap: wrap;
+            }
+            
+            .admin-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .logo-text h1 {
+                font-size: 1.5rem;
+            }
+            
+            .card {
+                padding: 25px 20px;
+            }
+            
+            .post-card {
+                margin-bottom: 20px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Đăng nhập</h3>
+                <button class="close-modal" id="closeLoginModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="loginUsername">Tên đăng nhập</label>
+                    <input type="text" id="loginUsername" placeholder="Nhập tên đăng nhập">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Mật khẩu</label>
+                    <input type="password" id="loginPassword" placeholder="Nhập mật khẩu">
+                </div>
+                <button class="btn" id="loginBtn" style="width: 100%;">Đăng nhập</button>
+                <p style="margin-top: 15px; text-align: center;">
+                    Tài khoản mẫu: admin / admin123
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Website -->
+    <div id="mainWebsite">
+        <!-- Header -->
+        <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <div class="logo-img" id="logoContainer">
+                        <div class="placeholder">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <img id="logoImageDisplay" src="" alt="Logo lớp học">
+                    </div>
+                    <div class="logo-text">
+                        <h1 id="classNameDisplay">Lớp 10 <span>Tin Học</span></h1>
+                        <p id="schoolNameDisplay">Trường THPT ABC</p>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="navMenu">
+                        <li><a href="#home"><i class="fas fa-home"></i> Trang chủ</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> Giới thiệu</a></li>
+                        <li><a href="#posts"><i class="fas fa-newspaper"></i> Bài đăng</a></li>
+                        <li><a href="#info"><i class="fas fa-users"></i> Thông tin lớp</a></li>
+                        <li><a href="#schedule"><i class="fas fa-calendar-alt"></i> Lịch học</a></li>
+                        <li><a href="#contact"><i class="fas fa-envelope"></i> Liên hệ</a></li>
+                        <li><a href="#" id="accountLink"><i class="fas fa-user"></i> <span id="accountLinkText">Tài khoản</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="container">
+                <div class="glass">
+                    <h2 id="heroTitleDisplay">Chào mừng đến với lớp 10 Tin học</h2>
+                    <p id="heroDescriptionDisplay">Khám phá thế giới công nghệ thông tin, phát triển tư duy lập trình và chuẩn bị hành trang cho tương lai số</p>
+                    <a href="#about" class="btn">Tìm hiểu thêm</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Giới thiệu lớp học</h2>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-img">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lớp học tin học">
+                    </div>
+                    <div class="about-text">
+                        <h3 id="aboutTitleDisplay">Lớp 10 Tin học - Nền tảng công nghệ tương lai</h3>
+                        <p id="aboutTextDisplay">Chương trình Tin học lớp 10 được thiết kế để cung cấp cho học sinh những kiến thức cơ bản và kỹ năng cần thiết trong thời đại số. Chúng tôi tập trung vào việc phát triển tư duy logic, kỹ năng giải quyết vấn đề và khả năng sáng tạo thông qua các bài học lập trình cơ bản, ứng dụng tin học văn phòng và hiểu biết về hệ thống máy tính.</p>
+                        <a href="#contact" class="btn">Liên hệ với chúng tôi</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Posts Section -->
+        <section id="posts" class="posts-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Bài đăng mới nhất</h2>
+                </div>
+                
+                <div class="posts-container" id="postsContainer">
+                    <!-- Posts will be loaded here -->
+                </div>
+                
+                <div class="pagination" id="pagination">
+                    <!-- Pagination will be loaded here -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Class Info Section -->
+        <section id="info">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Thông tin lớp học</h2>
+                </div>
+                
+                <div class="info-cards">
+                    <div class="card">
+                        <i class="fas fa-users"></i>
+                        <h3>Sĩ số lớp</h3>
+                        <p id="classSizeDisplay">35 học sinh</p>
+                        <p>Lớp được chia thành 5 nhóm học tập, mỗi nhóm 7 học sinh</p>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <h3>Giáo viên chủ nhiệm</h3>
+                        <p id="teacherNameDisplay">Thầy Nguyễn Văn A</p>
+                        <p>Thạc sĩ Công nghệ thông tin - 10 năm kinh nghiệm giảng dạy</p>
+                    </div>
+                    
+                    <div class="card">
+                        <i class="fas fa-laptop"></i>
+                        <h3>Cơ sở vật chất</h3>
+                        <p>Phòng máy tính hiện đại</p>
+                        <p>Máy tính cấu hình cao, phần mềm bản quyền đầy đủ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Schedule Section -->
+        <section id="schedule">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Lịch học trong tuần</h2>
+                </div>
+                
+                <div class="table-container">
+                    <table class="schedule-table">
+                        <thead>
+                            <tr>
+                                <th>Thứ</th>
+                                <th>Tiết 1</th>
+                                <th>Tiết 2</th>
+                                <th>Tiết 3</th>
+                                <th>Tiết 4</th>
+                                <th>Tiết 5</th>
+                            </tr>
+                        </thead>
+                        <tbody id="scheduleBody">
+                            <!-- Schedule will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Liên hệ với lớp</h2>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Thông tin liên hệ</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Địa chỉ lớp học</h4>
+                                <p id="classAddressDisplay">Phòng 201, Dãy nhà B, Trường THPT ABC</p>
+                                <p id="classLocationDisplay">123 Đường XYZ, Quận 1, TP.HCM</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email liên hệ</h4>
+                                <p id="classEmailDisplay">lop10tin@thptabc.edu.vn</p>
+                                <p id="teacherEmailDisplay">giaovien@thptabc.edu.vn</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Số điện thoại</h4>
+                                <p id="schoolPhoneDisplay">Điện thoại trường: (028) 1234 5678</p>
+                                <p id="teacherPhoneDisplay">Giáo viên chủ nhiệm: 0909 123 456</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form">
+                        <h3>Gửi tin nhắn cho chúng tôi</h3>
+                        <form id="contactForm">
+                            <div class="form-group">
+                                <label for="name">Họ và tên</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Nội dung tin nhắn</label>
+                                <textarea id="message" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn">Gửi tin nhắn</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 id="footerTitleDisplay">Lớp 10 Tin học</h3>
+                        <p id="footerDescriptionDisplay">Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.</p>
+                        <p id="footerSloganDisplay">Nơi ươm mầm tài năng công nghệ tương lai.</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Liên kết nhanh</h3>
+                        <p><a href="#home" style="color: white; text-decoration: none;">Trang chủ</a></p>
+                        <p><a href="#about" style="color: white; text-decoration: none;">Giới thiệu</a></p>
+                        <p><a href="#posts" style="color: white; text-decoration: none;">Bài đăng</a></p>
+                        <p><a href="#contact" style="color: white; text-decoration: none;">Liên hệ</a></p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Theo dõi chúng tôi</h3>
+                        <div class="social-links">
+                            <a href="#" id="facebookLink"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" id="youtubeLink"><i class="fab fa-youtube"></i></a>
+                            <a href="#" id="instagramLink"><i class="fab fa-instagram"></i></a>
+                            <a href="#" id="tiktokLink"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                        <p style="margin-top: 20px;">Đăng ký nhận thông báo mới nhất từ lớp</p>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p id="copyrightText">&copy; 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Post Detail Page (Hidden by default) -->
+    <div id="postDetailPage" style="display: none;">
+        <header>
+            <div class="container header-content">
+                <div class="logo">
+                    <div class="logo-img" id="logoContainerDetail">
+                        <div class="placeholder">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <img id="logoImageDisplayDetail" src="" alt="Logo lớp học">
+                    </div>
+                    <div class="logo-text">
+                        <h1 id="classNameDisplayDetail">Lớp 10 <span>Tin Học</span></h1>
+                        <p id="schoolNameDisplayDetail">Trường THPT ABC</p>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtnDetail">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav>
+                    <ul id="navMenuDetail">
+                        <li><a href="#" id="backToHome"><i class="fas fa-arrow-left"></i> Quay lại</a></li>
+                        <li><a href="#home"><i class="fas fa-home"></i> Trang chủ</a></li>
+                        <li><a href="#about"><i class="fas fa-info-circle"></i> Giới thiệu</a></li>
+                        <li><a href="#posts"><i class="fas fa-newspaper"></i> Bài đăng</a></li>
+                        <li><a href="#" id="accountLinkDetail"><i class="fas fa-user"></i> Tài khoản</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="post-detail-container" id="postDetailContainer">
+            <!-- Post detail will be loaded here -->
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h3 id="footerTitleDisplayDetail">Lớp 10 Tin học</h3>
+                        <p id="footerDescriptionDisplayDetail">Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.</p>
+                        <p id="footerSloganDisplayDetail">Nơi ươm mầm tài năng công nghệ tương lai.</p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Liên kết nhanh</h3>
+                        <p><a href="#home" style="color: white; text-decoration: none;">Trang chủ</a></p>
+                        <p><a href="#about" style="color: white; text-decoration: none;">Giới thiệu</a></p>
+                        <p><a href="#posts" style="color: white; text-decoration: none;">Bài đăng</a></p>
+                        <p><a href="#contact" style="color: white; text-decoration: none;">Liên hệ</a></p>
+                    </div>
+                    
+                    <div class="footer-section">
+                        <h3>Theo dõi chúng tôi</h3>
+                        <div class="social-links">
+                            <a href="#" id="facebookLinkDetail"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" id="youtubeLinkDetail"><i class="fab fa-youtube"></i></a>
+                            <a href="#" id="instagramLinkDetail"><i class="fab fa-instagram"></i></a>
+                            <a href="#" id="tiktokLinkDetail"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                        <p style="margin-top: 20px;">Đăng ký nhận thông báo mới nhất từ lớp</p>
+                    </div>
+                </div>
+                
+                <div class="copyright">
+                    <p id="copyrightTextDetail">&copy; 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Admin Page (Hidden by default) -->
+    <div id="adminPage" style="display: none;">
+        <div class="admin-page">
+            <div class="admin-container">
+                <div class="admin-header">
+                    <h1><i class="fas fa-cogs"></i> Trang Quản Trị Lớp 10 Tin Học</h1>
+                    <div>
+                        <span style="color: white; margin-right: 15px;" id="adminUsernameDisplay"></span>
+                        <button class="btn btn-small" id="logoutAdminBtn">Đăng xuất</button>
+                    </div>
+                </div>
+                
+                <div class="admin-nav">
+                    <button class="admin-tab active" data-tab="general">Thông tin chung</button>
+                    <button class="admin-tab" data-tab="posts">Quản lý bài đăng</button>
+                    <button class="admin-tab" data-tab="schedule">Thời khóa biểu</button>
+                    <button class="admin-tab" data-tab="contact">Liên hệ & MXH</button>
+                    <button class="admin-tab" data-tab="users" id="usersTab">Quản lý tài khoản</button>
+                    <button class="admin-tab" data-tab="notifications">Tin nhắn <span id="adminNotificationBadge" class="notification-badge" style="position: static; margin-left: 5px; display: none;">0</span></button>
+                </div>
+                
+                <div class="admin-content">
+                    <!-- General Tab -->
+                    <div class="admin-section active" id="generalTab">
+                        <div class="admin-card">
+                            <h3><i class="fas fa-school"></i> Thông tin lớp học</h3>
+                            <div class="admin-form-grid">
+                                <div class="form-group">
+                                    <label>Tên lớp</label>
+                                    <input type="text" id="adminClassName" value="Lớp 10 Tin Học">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên trường</label>
+                                    <input type="text" id="adminSchoolName" value="Trường THPT ABC">
+                                </div>
+                                <div class="form-group">
+                                    <label>Sĩ số lớp</label>
+                                    <input type="text" id="adminClassSize" value="35 học sinh">
+                                </div>
+                                <div class="form-group">
+                                    <label>Tên giáo viên</label>
+                                    <input type="text" id="adminTeacherName" value="Thầy Nguyễn Văn A">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fas fa-image"></i> Logo lớp học</h3>
+                            <div class="form-group">
+                                <label>Tải lên logo mới</label>
+                                <div class="image-upload-area" id="logoUploadArea">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click để tải logo lên</p>
+                                    <input type="file" id="logoUploadInput" accept="image/*" style="display: none;">
+                                </div>
+                                <div class="image-preview" id="logoPreview">
+                                    <img id="logoPreviewImage" src="" alt="Logo preview">
+                                </div>
+                                <button class="btn" id="saveLogoBtn" style="margin-top: 15px;">Lưu logo</button>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fas fa-edit"></i> Nội dung trang chủ</h3>
+                            <div class="form-group">
+                                <label>Tiêu đề trang chủ</label>
+                                <input type="text" id="adminHeroTitle" value="Chào mừng đến với lớp 10 Tin học">
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả trang chủ</label>
+                                <textarea id="adminHeroDescription" rows="3">Khám phá thế giới công nghệ thông tin, phát triển tư duy lập trình và chuẩn bị hành trang cho tương lai số</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Tiêu đề giới thiệu</label>
+                                <input type="text" id="adminAboutTitle" value="Lớp 10 Tin học - Nền tảng công nghệ tương lai">
+                            </div>
+                            <div class="form-group">
+                                <label>Nội dung giới thiệu</label>
+                                <textarea id="adminAboutText" rows="5">Chương trình Tin học lớp 10 được thiết kế để cung cấp cho học sinh những kiến thức cơ bản và kỹ năng cần thiết trong thời đại số. Chúng tôi tập trung vào việc phát triển tư duy logic, kỹ năng giải quyết vấn đề và khả năng sáng tạo thông qua các bài học lập trình cơ bản, ứng dụng tin học văn phòng và hiểu biết về hệ thống máy tính.</textarea>
+                            </div>
+                            <button class="btn" id="saveGeneralBtn">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Posts Tab -->
+                    <div class="admin-section" id="postsTab">
+                        <div class="admin-card">
+                            <h3><i class="fas fa-plus-circle"></i> Tạo bài đăng mới</h3>
+                            <div class="post-editor">
+                                <div class="form-group">
+                                    <label>Tiêu đề bài đăng</label>
+                                    <input type="text" id="postTitle" placeholder="Nhập tiêu đề bài đăng">
+                                </div>
+                                <div class="form-group">
+                                    <label>Nội dung bài đăng</label>
+                                    <textarea id="postContent" rows="6" placeholder="Nhập nội dung bài đăng"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Hình ảnh bài đăng</label>
+                                    <div class="image-upload-area" id="postImageUploadArea">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Click để tải hình ảnh lên</p>
+                                        <input type="file" id="postImageUploadInput" accept="image/*" style="display: none;">
+                                    </div>
+                                    <div class="image-preview" id="postImagePreview">
+                                        <img id="postImagePreviewImage" src="" alt="Post image preview">
+                                    </div>
+                                </div>
+                                <button class="btn" id="createPostBtn">Đăng bài</button>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fas fa-list"></i> Quản lý bài đăng</h3>
+                            <div id="postsList">
+                                <!-- Posts will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Schedule Tab -->
+                    <div class="admin-section" id="scheduleTab">
+                        <div class="admin-card">
+                            <h3><i class="fas fa-calendar-alt"></i> Chỉnh sửa thời khóa biểu</h3>
+                            <div id="scheduleEditor">
+                                <!-- Schedule editor will be loaded here -->
+                            </div>
+                            <button class="btn" id="saveScheduleBtn" style="margin-top: 20px;">Lưu thời khóa biểu</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Contact Tab -->
+                    <div class="admin-section" id="contactTab">
+                        <div class="admin-card">
+                            <h3><i class="fas fa-address-book"></i> Thông tin liên hệ</h3>
+                            <div class="admin-form-grid">
+                                <div class="form-group">
+                                    <label>Địa chỉ lớp học</label>
+                                    <input type="text" id="adminClassAddress" value="Phòng 201, Dãy nhà B, Trường THPT ABC">
+                                </div>
+                                <div class="form-group">
+                                    <label>Địa chỉ chi tiết</label>
+                                    <input type="text" id="adminClassLocation" value="123 Đường XYZ, Quận 1, TP.HCM">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email lớp</label>
+                                    <input type="email" id="adminClassEmail" value="lop10tin@thptabc.edu.vn">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email giáo viên</label>
+                                    <input type="email" id="adminTeacherEmail" value="giaovien@thptabc.edu.vn">
+                                </div>
+                                <div class="form-group">
+                                    <label>SĐT trường</label>
+                                    <input type="text" id="adminSchoolPhone" value="(028) 1234 5678">
+                                </div>
+                                <div class="form-group">
+                                    <label>SĐT giáo viên</label>
+                                    <input type="text" id="adminTeacherPhone" value="0909 123 456">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fas fa-share-alt"></i> Liên kết mạng xã hội</h3>
+                            <div class="admin-form-grid">
+                                <div class="form-group">
+                                    <label>Facebook</label>
+                                    <input type="url" id="adminFacebookLink" placeholder="https://facebook.com/...">
+                                </div>
+                                <div class="form-group">
+                                    <label>YouTube</label>
+                                    <input type="url" id="adminYoutubeLink" placeholder="https://youtube.com/...">
+                                </div>
+                                <div class="form-group">
+                                    <label>Instagram</label>
+                                    <input type="url" id="adminInstagramLink" placeholder="https://instagram.com/...">
+                                </div>
+                                <div class="form-group">
+                                    <label>TikTok</label>
+                                    <input type="url" id="adminTiktokLink" placeholder="https://tiktok.com/...">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fas fa-file-alt"></i> Nội dung chân trang</h3>
+                            <div class="form-group">
+                                <label>Tiêu đề chân trang</label>
+                                <input type="text" id="adminFooterTitle" value="Lớp 10 Tin học">
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả chân trang</label>
+                                <textarea id="adminFooterDescription" rows="2">Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Khẩu hiệu</label>
+                                <input type="text" id="adminFooterSlogan" value="Nơi ươm mầm tài năng công nghệ tương lai.">
+                            </div>
+                            <div class="form-group">
+                                <label>Bản quyền</label>
+                                <input type="text" id="adminCopyrightText" value="© 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.">
+                            </div>
+                            <button class="btn" id="saveContactBtn">Lưu thay đổi</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Users Tab -->
+                    <div class="admin-section" id="usersTabContent">
+                        <div class="admin-card">
+                            <h3><i class="fas fa-user-plus"></i> Tạo tài khoản mới</h3>
+                            <div class="admin-form-grid">
+                                <div class="form-group">
+                                    <label>Tên đăng nhập</label>
+                                    <input type="text" id="newAccountUsername" placeholder="Nhập tên đăng nhập">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu</label>
+                                    <input type="password" id="newAccountPassword" placeholder="Nhập mật khẩu">
+                                </div>
+                                <div class="form-group">
+                                    <label>Vai trò</label>
+                                    <select id="accountRoleSelect">
+                                        <option value="user">Người dùng</option>
+                                        <option value="ctv">Cộng tác viên</option>
+                                        <option value="admin">Quản trị viên</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <button class="btn" id="createNewAccountBtn">Tạo tài khoản</button>
+                        </div>
+                        
+                        <div class="admin-card">
+                            <h3><i class="fas fa-users"></i> Danh sách tài khoản</h3>
+                            <div class="user-list" id="usersList">
+                                <!-- Users will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Notifications Tab -->
+                    <div class="admin-section" id="notificationsTab">
+                        <div class="admin-card">
+                            <h3><i class="fas fa-envelope"></i> Tin nhắn từ liên hệ</h3>
+                            <div id="adminNotificationsList">
+                                <!-- Contact messages will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize data storage
+        const storage = {
+            // Default data
+            logo: localStorage.getItem('logo') || '',
+            className: localStorage.getItem('className') || 'Lớp 10 Tin Học',
+            schoolName: localStorage.getItem('schoolName') || 'Trường THPT ABC',
+            classSize: localStorage.getItem('classSize') || '35 học sinh',
+            teacherName: localStorage.getItem('teacherName') || 'Thầy Nguyễn Văn A',
+            heroTitle: localStorage.getItem('heroTitle') || 'Chào mừng đến với lớp 10 Tin học',
+            heroDescription: localStorage.getItem('heroDescription') || 'Khám phá thế giới công nghệ thông tin, phát triển tư duy lập trình và chuẩn bị hành trang cho tương lai số',
+            aboutTitle: localStorage.getItem('aboutTitle') || 'Lớp 10 Tin học - Nền tảng công nghệ tương lai',
+            aboutText: localStorage.getItem('aboutText') || 'Chương trình Tin học lớp 10 được thiết kế để cung cấp cho học sinh những kiến thức cơ bản và kỹ năng cần thiết trong thời đại số. Chúng tôi tập trung vào việc phát triển tư duy logic, kỹ năng giải quyết vấn đề và khả năng sáng tạo thông qua các bài học lập trình cơ bản, ứng dụng tin học văn phòng và hiểu biết về hệ thống máy tính.',
+            
+            // Posts
+            posts: JSON.parse(localStorage.getItem('posts')) || [
+                {
+                    id: 1,
+                    title: 'Chào mừng năm học mới',
+                    content: 'Năm học mới đã bắt đầu với nhiều hoạt động thú vị và bổ ích cho các em học sinh lớp 10 Tin học. Chúng ta sẽ có những buổi học lập trình Python cơ bản, tìm hiểu về cấu trúc dữ liệu và thuật toán, cũng như tham gia các cuộc thi tin học cấp trường.',
+                    image: '',
+                    date: '05/09/2023',
+                    author: 'Admin',
+                    status: 'published',
+                    slug: 'chao-mung-nam-hoc-moi'
+                },
+                {
+                    id: 2,
+                    title: 'Cuộc thi lập trình sắp tới',
+                    content: 'Lớp sẽ tổ chức cuộc thi lập trình cấp lớp vào cuối tháng 10. Các em hãy chuẩn bị thật tốt nhé! Cuộc thi sẽ có các hạng mục: lập trình Python, thiết kế web cơ bản, và giải thuật toán. Phần thưởng hấp dẫn đang chờ đợi các bạn!',
+                    image: '',
+                    date: '15/09/2023',
+                    author: 'CTV1',
+                    status: 'published',
+                    slug: 'cuoc-thi-lap-trinh-sap-toi'
+                },
+                {
+                    id: 3,
+                    title: 'Buổi học ngoại khóa tại công ty công nghệ',
+                    content: 'Tuần tới lớp sẽ có chuyến tham quan thực tế tại công ty công nghệ ABC. Đây là cơ hội tốt để các em học sinh được trải nghiệm môi trường làm việc thực tế và học hỏi từ các chuyên gia trong ngành.',
+                    image: '',
+                    date: '20/09/2023',
+                    author: 'CTV2',
+                    status: 'pending',
+                    slug: 'buoi-hoc-ngoai-khoa-cong-ty-cong-nghe'
+                }
+            ],
+            
+            // Schedule - 5 tiết mỗi ngày
+            schedule: JSON.parse(localStorage.getItem('schedule')) || [
+                { day: 'Thứ 2', lesson1: 'Toán', lesson2: 'Văn', lesson3: 'Tin học', lesson4: 'Lý', lesson5: 'Sinh' },
+                { day: 'Thứ 3', lesson1: 'Anh văn', lesson2: 'Tin học', lesson3: 'Hóa', lesson4: 'Sinh', lesson5: 'Sử' },
+                { day: 'Thứ 4', lesson1: 'Toán', lesson2: 'Tin học', lesson3: 'Sử', lesson4: 'Địa', lesson5: 'GDCD' },
+                { day: 'Thứ 5', lesson1: 'Văn', lesson2: 'Anh văn', lesson3: 'Thể dục', lesson4: 'Tin học', lesson5: 'Toán' },
+                { day: 'Thứ 6', lesson1: 'Lý', lesson2: 'Hóa', lesson3: 'GDCD', lesson4: 'Sinh hoạt lớp', lesson5: 'Văn' }
+            ],
+            
+            // Contact information
+            classAddress: localStorage.getItem('classAddress') || 'Phòng 201, Dãy nhà B, Trường THPT ABC',
+            classLocation: localStorage.getItem('classLocation') || '123 Đường XYZ, Quận 1, TP.HCM',
+            classEmail: localStorage.getItem('classEmail') || 'lop10tin@thptabc.edu.vn',
+            teacherEmail: localStorage.getItem('teacherEmail') || 'giaovien@thptabc.edu.vn',
+            schoolPhone: localStorage.getItem('schoolPhone') || '(028) 1234 5678',
+            teacherPhone: localStorage.getItem('teacherPhone') || '0909 123 456',
+            
+            // Social media links
+            facebookLink: localStorage.getItem('facebookLink') || '#',
+            youtubeLink: localStorage.getItem('youtubeLink') || '#',
+            instagramLink: localStorage.getItem('instagramLink') || '#',
+            tiktokLink: localStorage.getItem('tiktokLink') || '#',
+            
+            // Footer content
+            footerTitle: localStorage.getItem('footerTitle') || 'Lớp 10 Tin học',
+            footerDescription: localStorage.getItem('footerDescription') || 'Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.',
+            footerSlogan: localStorage.getItem('footerSlogan') || 'Nơi ươm mầm tài năng công nghệ tương lai.',
+            copyrightText: localStorage.getItem('copyrightText') || '© 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.',
+            
+            // Users
+            users: JSON.parse(localStorage.getItem('users')) || [
+                { username: 'admin', password: 'admin123', role: 'admin' },
+                { username: 'ctv1', password: 'ctv123', role: 'ctv' },
+                { username: 'ctv2', password: 'ctv123', role: 'ctv' }
+            ],
+            
+            // Notifications (contact messages)
+            notifications: JSON.parse(localStorage.getItem('notifications')) || [
+                {
+                    id: 1,
+                    name: 'Phụ huynh Nguyễn Văn A',
+                    email: 'phuhuynh@gmail.com',
+                    message: 'Xin hỏi lịch họp phụ huynh sắp tới của lớp 10 Tin khi nào ạ?',
+                    date: '10/09/2023 14:30',
+                    read: false
+                },
+                {
+                    id: 2,
+                    name: 'Học sinh Trần Thị B',
+                    email: 'hocsinh@gmail.com',
+                    message: 'Em muốn đăng ký tham gia câu lạc bộ lập trình. Em cần làm thủ tục gì ạ?',
+                    date: '12/09/2023 09:15',
+                    read: true
+                }
+            ],
+            
+            // Current user
+            currentUser: null,
+            
+            // Pagination settings
+            currentPage: 1,
+            postsPerPage: 6
+        };
+
+        // DOM Elements
+        const mainWebsite = document.getElementById('mainWebsite');
+        const adminPage = document.getElementById('adminPage');
+        const postDetailPage = document.getElementById('postDetailPage');
+        const loginModal = document.getElementById('loginModal');
+        const accountLink = document.getElementById('accountLink');
+        const accountLinkText = document.getElementById('accountLinkText');
+        const accountLinkDetail = document.getElementById('accountLinkDetail');
+        const closeLoginModal = document.getElementById('closeLoginModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const logoutAdminBtn = document.getElementById('logoutAdminBtn');
+        const contactForm = document.getElementById('contactForm');
+        const backToHome = document.getElementById('backToHome');
+        
+        // Initialize the website
+        function initWebsite() {
+            updateUIFromStorage();
+            loadPosts();
+            loadSchedule();
+            loadNotifications();
+            
+            // Check if user is already logged in
+            const loggedInUser = localStorage.getItem('loggedInUser');
+            if (loggedInUser) {
+                storage.currentUser = JSON.parse(loggedInUser);
+                updateAccountLink();
+            }
+            
+            // Check if we're viewing a post detail
+            const urlParams = new URLSearchParams(window.location.search);
+            const postSlug = urlParams.get('post');
+            if (postSlug) {
+                showPostDetail(postSlug);
+            }
+        }
+        
+        // Update UI from storage
+        function updateUIFromStorage() {
+            // Logo - CHỈ logo hình ảnh, không có chữ
+            const logoContainer = document.getElementById('logoContainer');
+            const logoImageDisplay = document.getElementById('logoImageDisplay');
+            const logoContainerDetail = document.getElementById('logoContainerDetail');
+            const logoImageDisplayDetail = document.getElementById('logoImageDisplayDetail');
+            
+            if (storage.logo) {
+                logoImageDisplay.src = storage.logo;
+                logoImageDisplay.style.display = 'block';
+                document.querySelector('#logoContainer .placeholder').style.display = 'none';
+                logoContainer.classList.add('has-image');
+                
+                logoImageDisplayDetail.src = storage.logo;
+                logoImageDisplayDetail.style.display = 'block';
+                document.querySelector('#logoContainerDetail .placeholder').style.display = 'none';
+                logoContainerDetail.classList.add('has-image');
+            } else {
+                logoImageDisplay.style.display = 'none';
+                document.querySelector('#logoContainer .placeholder').style.display = 'flex';
+                logoContainer.classList.remove('has-image');
+                
+                logoImageDisplayDetail.style.display = 'none';
+                document.querySelector('#logoContainerDetail .placeholder').style.display = 'flex';
+                logoContainerDetail.classList.remove('has-image');
+            }
+            
+            // Class information
+            document.getElementById('classNameDisplay').innerHTML = storage.className + ' <span>Tin Học</span>';
+            document.getElementById('schoolNameDisplay').textContent = storage.schoolName;
+            document.getElementById('classSizeDisplay').textContent = storage.classSize;
+            document.getElementById('teacherNameDisplay').textContent = storage.teacherName;
+            
+            document.getElementById('classNameDisplayDetail').innerHTML = storage.className + ' <span>Tin Học</span>';
+            document.getElementById('schoolNameDisplayDetail').textContent = storage.schoolName;
+            
+            // Hero section
+            document.getElementById('heroTitleDisplay').textContent = storage.heroTitle;
+            document.getElementById('heroDescriptionDisplay').textContent = storage.heroDescription;
+            
+            // About section
+            document.getElementById('aboutTitleDisplay').textContent = storage.aboutTitle;
+            document.getElementById('aboutTextDisplay').textContent = storage.aboutText;
+            
+            // Contact information
+            document.getElementById('classAddressDisplay').textContent = storage.classAddress;
+            document.getElementById('classLocationDisplay').textContent = storage.classLocation;
+            document.getElementById('classEmailDisplay').textContent = storage.classEmail;
+            document.getElementById('teacherEmailDisplay').textContent = storage.teacherEmail;
+            document.getElementById('schoolPhoneDisplay').textContent = 'Điện thoại trường: ' + storage.schoolPhone;
+            document.getElementById('teacherPhoneDisplay').textContent = 'Giáo viên chủ nhiệm: ' + storage.teacherPhone;
+            
+            // Social media links
+            document.getElementById('facebookLink').href = storage.facebookLink;
+            document.getElementById('youtubeLink').href = storage.youtubeLink;
+            document.getElementById('instagramLink').href = storage.instagramLink;
+            document.getElementById('tiktokLink').href = storage.tiktokLink;
+            
+            document.getElementById('facebookLinkDetail').href = storage.facebookLink;
+            document.getElementById('youtubeLinkDetail').href = storage.youtubeLink;
+            document.getElementById('instagramLinkDetail').href = storage.instagramLink;
+            document.getElementById('tiktokLinkDetail').href = storage.tiktokLink;
+            
+            // Footer content
+            document.getElementById('footerTitleDisplay').textContent = storage.footerTitle;
+            document.getElementById('footerDescriptionDisplay').textContent = storage.footerDescription;
+            document.getElementById('footerSloganDisplay').textContent = storage.footerSlogan;
+            document.getElementById('copyrightText').textContent = storage.copyrightText;
+            
+            document.getElementById('footerTitleDisplayDetail').textContent = storage.footerTitle;
+            document.getElementById('footerDescriptionDisplayDetail').textContent = storage.footerDescription;
+            document.getElementById('footerSloganDisplayDetail').textContent = storage.footerSlogan;
+            document.getElementById('copyrightTextDetail').textContent = storage.copyrightText;
+            
+            // Admin panel values
+            document.getElementById('adminClassName').value = storage.className;
+            document.getElementById('adminSchoolName').value = storage.schoolName;
+            document.getElementById('adminClassSize').value = storage.classSize;
+            document.getElementById('adminTeacherName').value = storage.teacherName;
+            document.getElementById('adminHeroTitle').value = storage.heroTitle;
+            document.getElementById('adminHeroDescription').value = storage.heroDescription;
+            document.getElementById('adminAboutTitle').value = storage.aboutTitle;
+            document.getElementById('adminAboutText').value = storage.aboutText;
+            document.getElementById('adminClassAddress').value = storage.classAddress;
+            document.getElementById('adminClassLocation').value = storage.classLocation;
+            document.getElementById('adminClassEmail').value = storage.classEmail;
+            document.getElementById('adminTeacherEmail').value = storage.teacherEmail;
+            document.getElementById('adminSchoolPhone').value = storage.schoolPhone;
+            document.getElementById('adminTeacherPhone').value = storage.teacherPhone;
+            document.getElementById('adminFacebookLink').value = storage.facebookLink;
+            document.getElementById('adminYoutubeLink').value = storage.youtubeLink;
+            document.getElementById('adminInstagramLink').value = storage.instagramLink;
+            document.getElementById('adminTiktokLink').value = storage.tiktokLink;
+            document.getElementById('adminFooterTitle').value = storage.footerTitle;
+            document.getElementById('adminFooterDescription').value = storage.footerDescription;
+            document.getElementById('adminFooterSlogan').value = storage.footerSlogan;
+            document.getElementById('adminCopyrightText').value = storage.copyrightText;
+            
+            // Logo preview in admin
+            const logoPreviewImage = document.getElementById('logoPreviewImage');
+            if (storage.logo) {
+                logoPreviewImage.src = storage.logo;
+                document.getElementById('logoPreview').style.display = 'block';
+            }
+        }
+        
+        // Update account link text based on login status
+        function updateAccountLink() {
+            if (storage.currentUser) {
+                accountLinkText.textContent = storage.currentUser.username;
+            } else {
+                accountLinkText.textContent = 'Tài khoản';
+            }
+        }
+        
+        // Load posts to the website with pagination
+        function loadPosts(page = 1) {
+            storage.currentPage = page;
+            const postsContainer = document.getElementById('postsContainer');
+            const paginationContainer = document.getElementById('pagination');
+            
+            // Filter only published posts for public view
+            const publishedPosts = storage.posts.filter(post => post.status === 'published');
+            
+            // Sort by date (newest first)
+            publishedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            // Calculate pagination
+            const totalPages = Math.ceil(publishedPosts.length / storage.postsPerPage);
+            const startIndex = (page - 1) * storage.postsPerPage;
+            const endIndex = startIndex + storage.postsPerPage;
+            const postsToShow = publishedPosts.slice(startIndex, endIndex);
+            
+            postsContainer.innerHTML = '';
+            
+            if (postsToShow.length === 0) {
+                postsContainer.innerHTML = '<p style="text-align: center; grid-column: 1 / -1; font-size: 1.2rem; color: #666;">Chưa có bài đăng nào.</p>';
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            postsToShow.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-card';
+                postElement.innerHTML = `
+                    ${post.image ? `
+                    <div class="post-image">
+                        <img src="${post.image}" alt="${post.title}">
+                    </div>
+                    ` : ''}
+                    <div class="post-content">
+                        <div class="post-date">
+                            <i class="far fa-calendar"></i> ${post.date}
+                        </div>
+                        <h3 class="post-title">${post.title}</h3>
+                        <p class="post-excerpt">${post.content.substring(0, 150)}...</p>
+                        <a href="#" class="read-more" data-post-slug="${post.slug}">
+                            Đọc thêm <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `;
+                postsContainer.appendChild(postElement);
+            });
+            
+            // Add event listeners for read more buttons
+            document.querySelectorAll('.read-more').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const postSlug = this.getAttribute('data-post-slug');
+                    showPostDetail(postSlug);
+                });
+            });
+            
+            // Create pagination
+            createPagination(totalPages, page);
+            
+            // Load posts in admin panel
+            loadAdminPosts();
+        }
+        
+        // Create pagination controls
+        function createPagination(totalPages, currentPage) {
+            const paginationContainer = document.getElementById('pagination');
+            
+            if (totalPages <= 1) {
+                paginationContainer.innerHTML = '';
+                return;
+            }
+            
+            let paginationHTML = '';
+            
+            // Previous button
+            if (currentPage > 1) {
+                paginationHTML += `<button class="page-btn" data-page="${currentPage - 1}"><i class="fas fa-chevron-left"></i></button>`;
+            }
+            
+            // Page numbers
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === currentPage) {
+                    paginationHTML += `<button class="page-btn active" data-page="${i}">${i}</button>`;
+                } else if (
+                    i === 1 || 
+                    i === totalPages || 
+                    (i >= currentPage - 1 && i <= currentPage + 1)
+                ) {
+                    paginationHTML += `<button class="page-btn" data-page="${i}">${i}</button>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    paginationHTML += `<span class="page-btn">...</span>`;
+                }
+            }
+            
+            // Next button
+            if (currentPage < totalPages) {
+                paginationHTML += `<button class="page-btn" data-page="${currentPage + 1}"><i class="fas fa-chevron-right"></i></button>`;
+            }
+            
+            paginationContainer.innerHTML = paginationHTML;
+            
+            // Add event listeners to pagination buttons
+            document.querySelectorAll('.page-btn[data-page]').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const page = parseInt(this.getAttribute('data-page'));
+                    loadPosts(page);
+                    
+                    // Scroll to posts section
+                    document.getElementById('posts').scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+        }
+        
+        // Load admin posts
+        function loadAdminPosts() {
+            const adminPostsList = document.getElementById('postsList');
+            adminPostsList.innerHTML = '';
+            
+            // Sort by date (newest first)
+            const sortedPosts = [...storage.posts].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedPosts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-editor';
+                postElement.innerHTML = `
+                    <h4>${post.title} 
+                        <span class="post-status ${post.status === 'published' ? 'status-published' : 'status-pending'}">
+                            ${post.status === 'published' ? 'Đã đăng' : 'Chờ duyệt'}
+                        </span>
+                    </h4>
+                    <p>${post.content.substring(0, 100)}...</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                        <span><i class="far fa-calendar"></i> ${post.date} | <i class="fas fa-user"></i> ${post.author}</span>
+                        <div>
+                            ${post.status === 'pending' ? `<button class="btn btn-small" style="background: var(--success-color); margin-right: 10px;" data-post-id="${post.id}" data-action="approve">Duyệt</button>` : ''}
+                            <button class="btn btn-small" style="background: var(--accent-color);" data-post-id="${post.id}" data-action="delete">Xóa</button>
+                        </div>
+                    </div>
+                `;
+                adminPostsList.appendChild(postElement);
+            });
+            
+            // Add event listeners
+            document.querySelectorAll('#postsList .btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const postId = parseInt(this.getAttribute('data-post-id'));
+                    const action = this.getAttribute('data-action');
+                    
+                    if (action === 'delete') {
+                        deletePost(postId);
+                    } else if (action === 'approve') {
+                        approvePost(postId);
+                    }
+                });
+            });
+        }
+        
+        // Show post detail page
+        function showPostDetail(postSlug) {
+            const post = storage.posts.find(p => p.slug === postSlug && p.status === 'published');
+            
+            if (!post) {
+                alert('Bài đăng không tồn tại hoặc chưa được duyệt!');
+                return;
+            }
+            
+            // Hide main website, show post detail page
+            mainWebsite.style.display = 'none';
+            adminPage.style.display = 'none';
+            postDetailPage.style.display = 'block';
+            
+            // Update URL without reloading page
+            history.pushState({ postSlug }, '', `?post=${postSlug}`);
+            
+            // Load post detail
+            const postDetailContainer = document.getElementById('postDetailContainer');
+            postDetailContainer.innerHTML = `
+                <div class="post-detail-header">
+                    <h1 class="post-detail-title">${post.title}</h1>
+                    <div class="post-detail-meta">
+                        <span><i class="far fa-calendar"></i> ${post.date}</span>
+                        <span><i class="fas fa-user"></i> ${post.author}</span>
+                    </div>
+                </div>
+                
+                ${post.image ? `
+                <div class="post-detail-image">
+                    <img src="${post.image}" alt="${post.title}">
+                </div>
+                ` : ''}
+                
+                <div class="post-detail-content">
+                    ${post.content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('')}
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <a href="#" id="backToPosts" class="btn"><i class="fas fa-arrow-left"></i> Quay lại danh sách bài đăng</a>
+                </div>
+            `;
+            
+            // Add event listener for back button
+            document.getElementById('backToPosts').addEventListener('click', function(e) {
+                e.preventDefault();
+                goBackToMain();
+            });
+        }
+        
+        // Go back to main website
+        function goBackToMain() {
+            postDetailPage.style.display = 'none';
+            adminPage.style.display = 'none';
+            mainWebsite.style.display = 'block';
+            
+            // Update URL
+            history.pushState({}, '', window.location.pathname);
+        }
+        
+        // Load schedule
+        function loadSchedule() {
+            const scheduleBody = document.getElementById('scheduleBody');
+            scheduleBody.innerHTML = '';
+            
+            storage.schedule.forEach(day => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td><strong>${day.day}</strong></td>
+                    <td><span class="subject">${day.lesson1}</span></td>
+                    <td><span class="subject">${day.lesson2}</span></td>
+                    <td><span class="subject">${day.lesson3}</span></td>
+                    <td><span class="subject">${day.lesson4}</span></td>
+                    <td><span class="subject">${day.lesson5}</span></td>
+                `;
+                scheduleBody.appendChild(row);
+            });
+            
+            // Load schedule editor in admin
+            const scheduleEditor = document.getElementById('scheduleEditor');
+            scheduleEditor.innerHTML = '';
+            
+            storage.schedule.forEach((day, index) => {
+                const dayEditor = document.createElement('div');
+                dayEditor.className = 'admin-form-grid';
+                dayEditor.innerHTML = `
+                    <h4 style="grid-column: 1 / -1; color: white; margin-bottom: 10px;">${day.day}</h4>
+                    <div class="form-group">
+                        <label>Tiết 1</label>
+                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="1" value="${day.lesson1}">
+                    </div>
+                    <div class="form-group">
+                        <label>Tiết 2</label>
+                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="2" value="${day.lesson2}">
+                    </div>
+                    <div class="form-group">
+                        <label>Tiết 3</label>
+                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="3" value="${day.lesson3}">
+                    </div>
+                    <div class="form-group">
+                        <label>Tiết 4</label>
+                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="4" value="${day.lesson4}">
+                    </div>
+                    <div class="form-group">
+                        <label>Tiết 5</label>
+                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="5" value="${day.lesson5}">
+                    </div>
+                `;
+                scheduleEditor.appendChild(dayEditor);
+            });
+        }
+        
+        // Load notifications
+        function loadNotifications() {
+            const adminNotificationsList = document.getElementById('adminNotificationsList');
+            
+            adminNotificationsList.innerHTML = '';
+            
+            if (storage.notifications.length === 0) {
+                adminNotificationsList.innerHTML = '<p style="text-align: center; color: white;">Chưa có tin nhắn nào.</p>';
+                return;
+            }
+            
+            // Sort notifications by date (newest first)
+            const sortedNotifications = [...storage.notifications].sort((a, b) => new Date(b.date) - new Date(a.date));
+            
+            sortedNotifications.forEach(notification => {
+                const adminNotificationElement = document.createElement('div');
+                adminNotificationElement.className = 'post-editor';
+                adminNotificationElement.style.marginBottom = '15px';
+                adminNotificationElement.innerHTML = `
+                    <h4>${notification.name}</h4>
+                    <p><strong>Email:</strong> ${notification.email}</p>
+                    <p>${notification.message}</p>
+                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
+                        <span style="color: white;"><i class="far fa-clock"></i> ${notification.date}</span>
+                        <button class="btn btn-small" style="background: ${notification.read ? 'var(--secondary-color)' : 'var(--accent-color)'};" data-notification-id="${notification.id}">
+                            ${notification.read ? 'Đã đọc' : 'Đánh dấu đã đọc'}
+                        </button>
+                    </div>
+                `;
+                adminNotificationsList.appendChild(adminNotificationElement);
+            });
+            
+            // Add event listeners for mark as read buttons
+            document.querySelectorAll('#adminNotificationsList .btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const notificationId = this.getAttribute('data-notification-id');
+                    markNotificationAsRead(notificationId);
+                });
+            });
+            
+            // Update notification badge in admin panel
+            const unreadCount = storage.notifications.filter(n => !n.read).length;
+            if (unreadCount > 0) {
+                document.getElementById('adminNotificationBadge').textContent = unreadCount;
+                document.getElementById('adminNotificationBadge').style.display = 'inline-block';
+            } else {
+                document.getElementById('adminNotificationBadge').style.display = 'none';
+            }
+        }
+        
+        // Load users
+        function loadUsers() {
+            const usersList = document.getElementById('usersList');
+            usersList.innerHTML = '';
+            
+            // Sort users: admin first, then ctv, then user
+            const sortedUsers = [...storage.users].sort((a, b) => {
+                const roleOrder = { admin: 1, ctv: 2, user: 3 };
+                return roleOrder[a.role] - roleOrder[b.role];
+            });
+            
+            sortedUsers.forEach(user => {
+                let roleText = '';
+                let roleClass = '';
+                
+                if (user.role === 'admin') {
+                    roleText = 'Quản trị viên';
+                    roleClass = 'role-admin';
+                } else if (user.role === 'ctv') {
+                    roleText = 'Cộng tác viên';
+                    roleClass = 'role-ctv';
+                } else {
+                    roleText = 'Người dùng';
+                    roleClass = 'role-user';
+                }
+                
+                const userElement = document.createElement('div');
+                userElement.className = 'user-item';
+                userElement.innerHTML = `
+                    <div>
+                        <strong>${user.username}</strong>
+                        <div class="user-role ${roleClass}">
+                            ${roleText}
+                        </div>
+                    </div>
+                    <div>
+                        ${user.username !== 'admin' ? `
+                        <button class="btn btn-small" style="background: var(--accent-color);" data-username="${user.username}" data-action="delete">Xóa</button>
+                        ` : ''}
+                    </div>
+                `;
+                usersList.appendChild(userElement);
+            });
+            
+            // Add event listeners
+            document.querySelectorAll('#usersList .btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const username = this.getAttribute('data-username');
+                    const action = this.getAttribute('data-action');
+                    
+                    if (action === 'delete') {
+                        deleteUser(username);
+                    }
+                });
+            });
+        }
+        
+        // Delete a post
+        function deletePost(postId) {
+            if (confirm('Bạn có chắc chắn muốn xóa bài đăng này?')) {
+                storage.posts = storage.posts.filter(post => post.id !== postId);
+                localStorage.setItem('posts', JSON.stringify(storage.posts));
+                loadPosts(storage.currentPage);
+                loadAdminPosts();
+            }
+        }
+        
+        // Approve a pending post
+        function approvePost(postId) {
+            const postIndex = storage.posts.findIndex(post => post.id === postId);
+            if (postIndex !== -1) {
+                storage.posts[postIndex].status = 'published';
+                localStorage.setItem('posts', JSON.stringify(storage.posts));
+                loadPosts(storage.currentPage);
+                loadAdminPosts();
+                alert('Bài đăng đã được duyệt!');
+            }
+        }
+        
+        // Delete a user
+        function deleteUser(username) {
+            if (username === 'admin') {
+                alert('Không thể xóa tài khoản admin!');
+                return;
+            }
+            
+            // Không cho phép xóa tài khoản đang đăng nhập
+            if (storage.currentUser && storage.currentUser.username === username) {
+                alert('Bạn không thể xóa tài khoản của chính mình!');
+                return;
+            }
+            
+            if (confirm(`Bạn có chắc chắn muốn xóa tài khoản ${username}?`)) {
+                storage.users = storage.users.filter(user => user.username !== username);
+                localStorage.setItem('users', JSON.stringify(storage.users));
+                loadUsers();
+            }
+        }
+        
+        // Mark notification as read
+        function markNotificationAsRead(notificationId) {
+            const notificationIndex = storage.notifications.findIndex(n => n.id == notificationId);
+            if (notificationIndex !== -1) {
+                storage.notifications[notificationIndex].read = true;
+                localStorage.setItem('notifications', JSON.stringify(storage.notifications));
+                loadNotifications();
+            }
+        }
+        
+        // Create slug from title
+        function createSlug(title) {
+            return title
+                .toLowerCase()
+                .normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^\w\s]/g, '')
+                .replace(/\s+/g, '-');
+        }
+        
+        // Get role text
+        function getRoleText(role) {
+            switch(role) {
+                case 'admin': return 'Quản trị viên';
+                case 'ctv': return 'Cộng tác viên';
+                case 'user': return 'Người dùng';
+                default: return 'Người dùng';
+            }
+        }
+        
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', initWebsite);
+        
+        // Mobile menu toggle for main website
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Mobile menu toggle for post detail page
+        const mobileMenuBtnDetail = document.getElementById('mobileMenuBtnDetail');
+        const navMenuDetail = document.getElementById('navMenuDetail');
+        
+        if (mobileMenuBtnDetail) {
+            mobileMenuBtnDetail.addEventListener('click', () => {
+                navMenuDetail.classList.toggle('active');
+                mobileMenuBtnDetail.innerHTML = navMenuDetail.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+        }
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu) navMenu.classList.remove('active');
+                if (navMenuDetail) navMenuDetail.classList.remove('active');
+                if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                if (mobileMenuBtnDetail) mobileMenuBtnDetail.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#') return;
+                
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Account link click
+        accountLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (storage.currentUser) {
+                // Nếu đã đăng nhập, đăng xuất
+                storage.currentUser = null;
+                localStorage.removeItem('loggedInUser');
+                updateAccountLink();
+                alert('Đã đăng xuất!');
+            } else {
+                // Nếu chưa đăng nhập, hiển thị modal đăng nhập
+                loginModal.classList.add('active');
+            }
+        });
+        
+        accountLinkDetail.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.add('active');
+        });
+        
+        // Back to home button
+        backToHome.addEventListener('click', (e) => {
+            e.preventDefault();
+            goBackToMain();
+        });
+        
+        // Handle browser back button
+        window.addEventListener('popstate', function(event) {
+            if (event.state && event.state.postSlug) {
+                showPostDetail(event.state.postSlug);
+            } else {
+                goBackToMain();
+            }
+        });
+        
+        // Close modal
+        closeLoginModal.addEventListener('click', () => {
+            loginModal.classList.remove('active');
+        });
+        
+        // Click outside modal to close
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) loginModal.classList.remove('active');
+        });
+        
+        // Login
+        loginBtn.addEventListener('click', () => {
+            const username = document.getElementById('loginUsername').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const user = storage.users.find(u => u.username === username && u.password === password);
+            
+            if (user) {
+                storage.currentUser = user;
+                localStorage.setItem('loggedInUser', JSON.stringify(user));
+                loginModal.classList.remove('active');
+                updateAccountLink();
+                
+                // Clear form
+                document.getElementById('loginUsername').value = '';
+                document.getElementById('loginPassword').value = '';
+                
+                // Show admin panel if user is admin or ctv
+                if (user.role === 'admin' || user.role === 'ctv') {
+                    mainWebsite.style.display = 'none';
+                    postDetailPage.style.display = 'none';
+                    adminPage.style.display = 'block';
+                    document.getElementById('adminUsernameDisplay').textContent = `Xin chào, ${user.username} (${getRoleText(user.role)})`;
+                    
+                    // Load data for admin panel
+                    loadAdminPosts();
+                    loadUsers();
+                    loadNotifications();
+                    
+                    // Hide users tab if not admin
+                    if (user.role !== 'admin') {
+                        document.getElementById('usersTab').style.display = 'none';
+                    } else {
+                        document.getElementById('usersTab').style.display = 'block';
+                    }
+                } else {
+                    alert('Đăng nhập thành công! Bạn là người dùng thông thường.');
+                }
+            } else {
+                alert('Tên đăng nhập hoặc mật khẩu không đúng!');
+            }
+        });
+        
+        // Contact form submission
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            // Create new notification
+            const newNotification = {
+                id: Date.now(),
+                name,
+                email,
+                message,
+                date: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}),
+                read: false
+            };
+            
+            storage.notifications.push(newNotification);
+            localStorage.setItem('notifications', JSON.stringify(storage.notifications));
+            
+            alert('Cảm ơn bạn đã gửi tin nhắn! Tin nhắn của bạn đã được gửi đến quản trị viên.');
+            contactForm.reset();
+            
+            // Reload notifications if admin is logged in
+            if (storage.currentUser && (storage.currentUser.role === 'admin' || storage.currentUser.role === 'ctv')) {
+                loadNotifications();
+            }
+        });
+        
+        // Admin panel functionality
+        const adminTabs = document.querySelectorAll('.admin-tab');
+        const adminSections = document.querySelectorAll('.admin-section');
+        
+        // Tab switching
+        adminTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                adminTabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show corresponding section
+                adminSections.forEach(section => section.classList.remove('active'));
+                document.getElementById(`${tabId}Tab`).classList.add('active');
+            });
+        });
+        
+        // Logo upload
+        const logoUploadArea = document.getElementById('logoUploadArea');
+        const logoUploadInput = document.getElementById('logoUploadInput');
+        
+        logoUploadArea.addEventListener('click', () => {
+            logoUploadInput.click();
+        });
+        
+        logoUploadInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const logoPreview = document.getElementById('logoPreview');
+                    const logoPreviewImage = document.getElementById('logoPreviewImage');
+                    
+                    logoPreviewImage.src = e.target.result;
+                    logoPreview.style.display = 'block';
+                    
+                    // Save to storage immediately
+                    storage.logo = e.target.result;
+                    localStorage.setItem('logo', e.target.result);
+                    
+                    // Update UI
+                    updateUIFromStorage();
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Save logo button
+        document.getElementById('saveLogoBtn').addEventListener('click', () => {
+            alert('Logo đã được lưu thành công!');
+        });
+        
+        // Save general information
+        document.getElementById('saveGeneralBtn').addEventListener('click', () => {
+            // Update storage
+            storage.className = document.getElementById('adminClassName').value;
+            storage.schoolName = document.getElementById('adminSchoolName').value;
+            storage.classSize = document.getElementById('adminClassSize').value;
+            storage.teacherName = document.getElementById('adminTeacherName').value;
+            storage.heroTitle = document.getElementById('adminHeroTitle').value;
+            storage.heroDescription = document.getElementById('adminHeroDescription').value;
+            storage.aboutTitle = document.getElementById('adminAboutTitle').value;
+            storage.aboutText = document.getElementById('adminAboutText').value;
+            
+            // Save to localStorage
+            localStorage.setItem('className', storage.className);
+            localStorage.setItem('schoolName', storage.schoolName);
+            localStorage.setItem('classSize', storage.classSize);
+            localStorage.setItem('teacherName', storage.teacherName);
+            localStorage.setItem('heroTitle', storage.heroTitle);
+            localStorage.setItem('heroDescription', storage.heroDescription);
+            localStorage.setItem('aboutTitle', storage.aboutTitle);
+            localStorage.setItem('aboutText', storage.aboutText);
+            
+            // Update UI
+            updateUIFromStorage();
+            alert('Đã lưu thông tin thành công!');
+        });
+        
+        // Post image upload
+        const postImageUploadArea = document.getElementById('postImageUploadArea');
+        const postImageUploadInput = document.getElementById('postImageUploadInput');
+        
+        postImageUploadArea.addEventListener('click', () => {
+            postImageUploadInput.click();
+        });
+        
+        let postImageData = '';
+        
+        postImageUploadInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const postImagePreview = document.getElementById('postImagePreview');
+                    const postImagePreviewImage = document.getElementById('postImagePreviewImage');
+                    
+                    postImagePreviewImage.src = e.target.result;
+                    postImagePreview.style.display = 'block';
+                    postImageData = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Create new post
+        document.getElementById('createPostBtn').addEventListener('click', () => {
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            
+            if (!title || !content) {
+                alert('Vui lòng nhập tiêu đề và nội dung bài đăng!');
+                return;
+            }
+            
+            // Determine post status based on user role
+            let status = 'pending';
+            if (storage.currentUser && storage.currentUser.role === 'admin') {
+                status = 'published';
+            }
+            
+            // Create new post
+            const newPost = {
+                id: Date.now(),
+                title,
+                content,
+                image: postImageData,
+                date: new Date().toLocaleDateString('vi-VN'),
+                author: storage.currentUser ? storage.currentUser.username : 'Người dùng',
+                status: status,
+                slug: createSlug(title) + '-' + Date.now()
+            };
+            
+            storage.posts.unshift(newPost);
+            localStorage.setItem('posts', JSON.stringify(storage.posts));
+            
+            // Clear form
+            document.getElementById('postTitle').value = '';
+            document.getElementById('postContent').value = '';
+            document.getElementById('postImagePreview').style.display = 'none';
+            postImageData = '';
+            
+            // Reload posts
+            loadPosts(1);
+            loadAdminPosts();
+            
+            if (status === 'pending') {
+                alert('Bài đăng đã được tạo và đang chờ duyệt!');
+            } else {
+                alert('Bài đăng đã được đăng thành công!');
+            }
+        });
+        
+        // Save schedule
+        document.getElementById('saveScheduleBtn').addEventListener('click', () => {
+            const inputs = document.querySelectorAll('.schedule-input');
+            
+            inputs.forEach(input => {
+                const dayIndex = parseInt(input.getAttribute('data-day'));
+                const lesson = input.getAttribute('data-lesson');
+                const value = input.value;
+                
+                if (lesson === '1') storage.schedule[dayIndex].lesson1 = value;
+                else if (lesson === '2') storage.schedule[dayIndex].lesson2 = value;
+                else if (lesson === '3') storage.schedule[dayIndex].lesson3 = value;
+                else if (lesson === '4') storage.schedule[dayIndex].lesson4 = value;
+                else if (lesson === '5') storage.schedule[dayIndex].lesson5 = value;
+            });
+            
+            localStorage.setItem('schedule', JSON.stringify(storage.schedule));
+            
+            // Update UI
+            loadSchedule();
+            alert('Thời khóa biểu đã được lưu thành công!');
+        });
+        
+        // Save contact information
+        document.getElementById('saveContactBtn').addEventListener('click', () => {
+            // Update storage
+            storage.classAddress = document.getElementById('adminClassAddress').value;
+            storage.classLocation = document.getElementById('adminClassLocation').value;
+            storage.classEmail = document.getElementById('adminClassEmail').value;
+            storage.teacherEmail = document.getElementById('adminTeacherEmail').value;
+            storage.schoolPhone = document.getElementById('adminSchoolPhone').value;
+            storage.teacherPhone = document.getElementById('adminTeacherPhone').value;
+            storage.facebookLink = document.getElementById('adminFacebookLink').value;
+            storage.youtubeLink = document.getElementById('adminYoutubeLink').value;
+            storage.instagramLink = document.getElementById('adminInstagramLink').value;
+            storage.tiktokLink = document.getElementById('adminTiktokLink').value;
+            storage.footerTitle = document.getElementById('adminFooterTitle').value;
+            storage.footerDescription = document.getElementById('adminFooterDescription').value;
+            storage.footerSlogan = document.getElementById('adminFooterSlogan').value;
+            storage.copyrightText = document.getElementById('adminCopyrightText').value;
+            
+            // Save to localStorage
+            localStorage.setItem('classAddress', storage.classAddress);
+            localStorage.setItem('classLocation', storage.classLocation);
+            localStorage.setItem('classEmail', storage.classEmail);
+            localStorage.setItem('teacherEmail', storage.teacherEmail);
+            localStorage.setItem('schoolPhone', storage.schoolPhone);
+            localStorage.setItem('teacherPhone', storage.teacherPhone);
+            localStorage.setItem('facebookLink', storage.facebookLink);
+            localStorage.setItem('youtubeLink', storage.youtubeLink);
+            localStorage.setItem('instagramLink', storage.instagramLink);
+            localStorage.setItem('tiktokLink', storage.tiktokLink);
+            localStorage.setItem('footerTitle', storage.footerTitle);
+            localStorage.setItem('footerDescription', storage.footerDescription);
+            localStorage.setItem('footerSlogan', storage.footerSlogan);
+            localStorage.setItem('copyrightText', storage.copyrightText);
+            
+            // Update UI
+            updateUIFromStorage();
+            alert('Đã lưu thông tin liên hệ và mạng xã hội thành công!');
+        });
+        
+        // Create new account (admin only)
+        document.getElementById('createNewAccountBtn').addEventListener('click', () => {
+            const username = document.getElementById('newAccountUsername').value;
+            const password = document.getElementById('newAccountPassword').value;
+            const roleSelect = document.getElementById('accountRoleSelect');
+            const role = roleSelect.value;
+            
+            // Validate input
+            if (!username || !password) {
+                alert('Vui lòng nhập đầy đủ thông tin!');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Mật khẩu phải có ít nhất 6 ký tự!');
+                return;
+            }
+            
+            // Check if user is admin to create admin account
+            if (role === 'admin' && storage.currentUser && storage.currentUser.role !== 'admin') {
+                alert('Chỉ quản trị viên mới có thể tạo tài khoản quản trị!');
+                roleSelect.value = 'user';
+                return;
+            }
+            
+            // Check if username already exists
+            if (storage.users.find(u => u.username === username)) {
+                alert('Tên đăng nhập đã tồn tại!');
+                return;
+            }
+            
+            // Create new account
+            const newUser = {
+                username,
+                password,
+                role
+            };
+            
+            storage.users.push(newUser);
+            localStorage.setItem('users', JSON.stringify(storage.users));
+            
+            // Clear form
+            document.getElementById('newAccountUsername').value = '';
+            document.getElementById('newAccountPassword').value = '';
+            roleSelect.value = 'user';
+            
+            // Reload users list
+            loadUsers();
+            
+            alert(`Tài khoản ${username} đã được tạo thành công với vai trò ${getRoleText(role)}!`);
+        });
+        
+        // Logout from admin panel
+        logoutAdminBtn.addEventListener('click', () => {
+            // Logout user
+            storage.currentUser = null;
+            localStorage.removeItem('loggedInUser');
+            updateAccountLink();
+            
+            // Switch back to main website
+            adminPage.style.display = 'none';
+            postDetailPage.style.display = 'none';
+            mainWebsite.style.display = 'block';
+            
+            alert('Đã đăng xuất thành công!');
+        });
+        
+        // Add Enter key support for login form
+        document.getElementById('loginPassword').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                loginBtn.click();
+            }
+        });
+        
+        // Add Enter key support for contact form
+        document.getElementById('message').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                contactForm.dispatchEvent(new Event('submit'));
+            }
+        });
+        
+        // Add notification badge to header if user is admin or ctv
+        function updateHeaderNotificationBadge() {
+            const unreadCount = storage.notifications.filter(n => !n.read).length;
+            const notificationBadge = document.querySelector('.notification-badge');
+            
+            if (storage.currentUser && (storage.currentUser.role === 'admin' || storage.currentUser.role === 'ctv')) {
+                if (unreadCount > 0) {
+                    notificationBadge.textContent = unreadCount;
+                    notificationBadge.style.display = 'flex';
+                } else {
+                    notificationBadge.style.display = 'none';
+                }
+            } else {
+                notificationBadge.style.display = 'none';
+            }
+        }
+        
+        // Call this function when notifications are updated
+        updateHeaderNotificationBadge();
+        loadNotifications(); // To update badge on initial load
+    </script>
+</body>
+</html>
