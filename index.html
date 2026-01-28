@@ -3,9 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lớp 10 Tin Học</title>
+    <title>Lớp 10 Tin Học - Trang Chủ</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --accent-color: #ff006e;
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-dark: #333;
+            --text-light: #fff;
+            --shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,341 +27,210 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        :root {
-            --primary-color: rgba(44, 62, 80, 0.9);
-            --secondary-color: rgba(52, 152, 219, 0.9);
-            --accent-color: rgba(231, 76, 60, 0.9);
-            --glass-color: rgba(255, 255, 255, 0.15);
-            --glass-border: rgba(255, 255, 255, 0.2);
-            --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            --text-color: #333;
-            --light-text: #fff;
-            --success-color: rgba(46, 204, 113, 0.9);
-            --admin-color: rgba(155, 89, 182, 0.9);
-            --pending-color: rgba(243, 156, 18, 0.9);
-        }
-
         body {
-            line-height: 1.6;
-            color: var(--text-color);
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
-            background-attachment: fixed;
+            color: var(--text-dark);
         }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Glass Effect */
+        /* Glassmorphism effect */
         .glass {
-            background: var(--glass-color);
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
             border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            border-radius: 15px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
         }
 
-        /* Header */
+        /* Header & Navigation */
         header {
-            background: rgba(44, 62, 80, 0.85);
-            backdrop-filter: blur(10px);
-            color: var(--light-text);
-            padding: 18px 0;
             position: sticky;
             top: 0;
-            z-index: 100;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .header-content {
+            z-index: 1000;
+            padding: 15px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
 
-        .logo {
+        .logo-container {
             display: flex;
             align-items: center;
             gap: 15px;
         }
 
-        .logo-img {
+        .logo {
             width: 60px;
             height: 60px;
-            border-radius: 12px;
-            overflow: hidden;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-color);
+            background: rgba(255, 255, 255, 0.1);
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            overflow: hidden;
         }
 
-        .logo-img img {
+        .logo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             display: none;
         }
 
-        .logo-img.has-image img {
+        .logo.has-image img {
             display: block;
         }
 
-        .logo-img .placeholder {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: rgba(255, 255, 255, 0.7);
+        .logo .placeholder {
+            font-size: 1.5rem;
+            color: var(--primary-color);
         }
 
         .logo-text h1 {
             font-size: 1.8rem;
-            font-weight: 600;
+            color: var(--primary-color);
         }
 
-        .logo-text span {
-            color: var(--secondary-color);
+        .logo-text p {
+            font-size: 0.9rem;
+            color: #666;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            align-items: center;
+            gap: 30px;
         }
 
-        nav ul li {
-            margin-left: 25px;
-            position: relative;
-        }
-
-        nav ul li a {
-            color: var(--light-text);
+        nav a {
             text-decoration: none;
-            font-weight: 500;
-            font-size: 1.05rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
             padding: 8px 15px;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .user-section {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 20px;
         }
 
-        nav ul li a:hover {
-            background: rgba(255, 255, 255, 0.1);
+        .notification-icon {
+            position: relative;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-dark);
         }
 
         .notification-badge {
-            background-color: var(--accent-color);
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--accent-color);
             color: white;
             border-radius: 50%;
-            width: 22px;
-            height: 22px;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.75rem;
-            font-weight: bold;
-            position: absolute;
-            top: -5px;
-            right: -5px;
         }
 
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
+        .login-btn {
+            background: var(--primary-color);
             color: white;
-            font-size: 1.8rem;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .login-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
         }
 
         /* Hero Section */
         .hero {
-            padding: 120px 0;
+            padding: 80px 5%;
             text-align: center;
-            color: var(--light-text);
-            background: linear-gradient(rgba(44, 62, 80, 0.7), rgba(44, 62, 80, 0.7)), 
-                        url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        .hero .glass {
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-            padding: 40px;
-            max-width: 900px;
-            margin: 0 auto;
+            background: linear-gradient(rgba(58, 134, 255, 0.1), rgba(131, 56, 236, 0.1));
+            margin: 20px 5%;
+            border-radius: 25px;
         }
 
         .hero h2 {
             font-size: 2.8rem;
             margin-bottom: 20px;
-            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .hero p {
-            font-size: 1.3rem;
-            max-width: 800px;
+            font-size: 1.2rem;
+            max-width: 700px;
             margin: 0 auto 30px;
-            opacity: 0.9;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: white;
-            padding: 14px 32px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            backdrop-filter: blur(5px);
-        }
-
-        .btn:hover {
-            background: rgba(52, 152, 219, 1);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn-small {
-            padding: 8px 16px;
-            font-size: 0.9rem;
-        }
-
-        /* Sections */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-            font-weight: 700;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: var(--secondary-color);
-            border-radius: 2px;
-        }
-
-        /* About */
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-
-        .about-img {
-            flex: 1;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: var(--glass-shadow);
-        }
-
-        .about-img img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.5s ease;
-        }
-
-        .about-img:hover img {
-            transform: scale(1.05);
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 25px;
-            color: var(--primary-color);
-            font-weight: 700;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            line-height: 1.6;
         }
 
         /* Posts Section */
         .posts-section {
-            background: rgba(245, 247, 250, 0.7);
+            padding: 60px 5%;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--primary-color);
         }
 
         .posts-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 30px;
+            margin-bottom: 40px;
         }
 
         .post-card {
-            background: var(--glass-color);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
+            padding: 25px;
+            transition: transform 0.3s;
+            cursor: pointer;
         }
 
         .post-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
-        .post-image {
-            height: 220px;
-            overflow: hidden;
-        }
-
-        .post-image img {
+        .post-img {
             width: 100%;
-            height: 100%;
+            height: 200px;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .post-card:hover .post-image img {
-            transform: scale(1.1);
-        }
-
-        .post-content {
-            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 15px;
         }
 
         .post-date {
+            color: #666;
             font-size: 0.9rem;
-            color: rgba(0, 0, 0, 0.6);
             margin-bottom: 10px;
             display: flex;
             align-items: center;
@@ -355,20 +238,19 @@
         }
 
         .post-title {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
             color: var(--primary-color);
-            font-weight: 700;
         }
 
         .post-excerpt {
-            color: rgba(0, 0, 0, 0.7);
-            margin-bottom: 20px;
-            line-height: 1.6;
+            margin-bottom: 15px;
+            line-height: 1.5;
+            color: #555;
         }
 
         .read-more {
-            color: var(--secondary-color);
+            color: var(--primary-color);
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
@@ -377,309 +259,216 @@
         }
 
         .read-more:hover {
-            text-decoration: underline;
-        }
-
-        /* Class Info */
-        .info-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: var(--glass-color);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 35px 30px;
-            text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .card i {
-            font-size: 3.5rem;
             color: var(--secondary-color);
-            margin-bottom: 25px;
         }
 
-        .card h3 {
-            font-size: 1.7rem;
-            margin-bottom: 15px;
-            color: var(--primary-color);
-            font-weight: 700;
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 40px;
         }
 
-        /* Schedule */
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #ddd;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .page-btn.active, .page-btn:hover {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            padding: 60px 5%;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .schedule-container {
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+
         .schedule-table {
             width: 100%;
             border-collapse: collapse;
-            background: var(--glass-color);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
+            min-width: 800px;
         }
 
         .schedule-table th, .schedule-table td {
-            padding: 20px 15px;
+            padding: 15px;
             text-align: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #ddd;
         }
 
         .schedule-table th {
-            background: rgba(44, 62, 80, 0.8);
+            background: var(--primary-color);
             color: white;
-            font-weight: 600;
-            font-size: 1.1rem;
         }
 
         .schedule-table tr:nth-child(even) {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(0, 0, 0, 0.05);
         }
 
-        .schedule-table tr:hover {
-            background: rgba(52, 152, 219, 0.1);
-        }
-
-        .subject {
-            display: inline-block;
-            background: var(--secondary-color);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        /* Contact */
-        .contact-content {
-            display: flex;
-            gap: 50px;
-        }
-
-        .contact-info {
-            flex: 1;
+        /* Contact Section */
+        .contact-section {
+            padding: 60px 5%;
         }
 
         .contact-form {
-            flex: 1;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .contact-item i {
-            font-size: 1.8rem;
-            color: var(--secondary-color);
-            margin-right: 20px;
-            margin-top: 5px;
+            max-width: 700px;
+            margin: 40px auto 0;
+            padding: 30px;
         }
 
         .form-group {
-            margin-bottom: 25px;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             font-weight: 600;
-            color: var(--primary-color);
+            color: var(--text-dark);
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
+        .form-control {
             width: 100%;
             padding: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
             border-radius: 10px;
+            border: 1px solid #ddd;
             font-size: 1rem;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            color: var(--text-color);
-            transition: all 0.3s ease;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.9);
         }
 
-        .form-group input:focus,
-        .form-group textarea:focus {
+        .form-control:focus {
+            border-color: var(--primary-color);
             outline: none;
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.2);
         }
 
-        .form-group textarea {
-            height: 180px;
+        textarea.form-control {
+            min-height: 150px;
             resize: vertical;
         }
 
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--secondary-color);
+        }
+
+        .btn-small {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .social-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            transition: transform 0.3s;
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px);
+        }
+
+        .facebook { background: #1877f2; }
+        .youtube { background: #ff0000; }
+        .instagram { background: #e4405f; }
+        .tiktok { background: #000000; }
+
         /* Footer */
         footer {
-            background: rgba(44, 62, 80, 0.9);
+            background: var(--primary-color);
             color: white;
-            padding: 60px 0 30px;
-            backdrop-filter: blur(10px);
+            padding: 40px 5%;
+            margin-top: 60px;
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
         }
 
         .footer-section h3 {
-            font-size: 1.6rem;
-            margin-bottom: 25px;
-            color: var(--secondary-color);
-            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
         }
 
-        .footer-section p {
-            margin-bottom: 15px;
-            opacity: 0.9;
+        .footer-section p, .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
         }
 
-        .social-links {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 45px;
-            height: 45px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
+        .footer-section a {
             text-decoration: none;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
+            transition: color 0.3s;
         }
 
-        .social-links a:hover {
-            background: var(--secondary-color);
-            transform: translateY(-3px);
+        .footer-section a:hover {
+            color: white;
         }
 
         .copyright {
             text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.95rem;
-            opacity: 0.7;
-        }
-
-        /* Pagination */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             margin-top: 40px;
-            gap: 10px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .page-btn {
-            padding: 10px 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: var(--text-color);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .page-btn:hover {
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        .page-btn.active {
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        /* Post Detail Page */
-        .post-detail-container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 40px 20px;
-        }
-
-        .post-detail-header {
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .post-detail-title {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .post-detail-meta {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            color: rgba(0, 0, 0, 0.6);
-            margin-bottom: 30px;
-        }
-
-        .post-detail-image {
-            width: 100%;
-            height: 400px;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-bottom: 40px;
-        }
-
-        .post-detail-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .post-detail-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 40px;
-        }
-
-        /* Modals */
+        /* Modal styles */
         .modal {
+            display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
             justify-content: center;
-            z-index: 1000;
-            display: none;
+            align-items: center;
             backdrop-filter: blur(5px);
         }
 
@@ -688,63 +477,46 @@
         }
 
         .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
             width: 90%;
             max-width: 500px;
+            padding: 30px;
             border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            animation: modalAppear 0.3s ease;
-        }
-
-        @keyframes modalAppear {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .modal-header {
-            background: var(--primary-color);
-            color: white;
-            padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .modal-header h3 {
-            font-size: 1.8rem;
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
         }
 
         .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #666;
             background: none;
             border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            line-height: 1;
         }
 
-        .modal-body {
-            padding: 30px;
+        .modal-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
         }
 
-        /* Admin Page */
-        .admin-page {
+        /* Admin Panel Styles */
+        .admin-panel {
+            display: none;
+            padding: 40px 5%;
             min-height: 100vh;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
         }
 
         .admin-container {
-            width: 100%;
             max-width: 1200px;
             margin: 0 auto;
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(20px);
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -757,7 +529,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .admin-header h1 {
+        .admin-header h2 {
             color: white;
             font-size: 2rem;
         }
@@ -766,6 +538,7 @@
             display: flex;
             background: rgba(0, 0, 0, 0.2);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            flex-wrap: wrap;
         }
 
         .admin-tab {
@@ -817,10 +590,149 @@
             gap: 10px;
         }
 
-        .admin-form-grid {
+        .upload-area {
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .upload-area:hover {
+            border-color: var(--secondary-color);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .preview-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 20px auto;
+            display: block;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .form-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .admin-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .admin-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .admin-btn.danger {
+            background: var(--danger-color);
+        }
+
+        .admin-btn.success {
+            background: var(--success-color);
+        }
+
+        .message-list {
+            margin-top: 20px;
+        }
+
+        .message-item {
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .message-item.unread {
+            background: rgba(255, 0, 110, 0.2);
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .message-sender {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: white;
+        }
+
+        .message-preview {
+            color: rgba(255, 255, 255, 0.8);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .post-status {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-pending {
+            background: var(--warning-color);
+            color: #000;
+        }
+
+        .status-approved {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .user-list {
+            margin-top: 20px;
+        }
+
+        .user-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .user-role {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .role-admin {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .role-ctv {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .role-user {
+            background: #6c757d;
+            color: white;
         }
 
         .post-editor {
@@ -828,11 +740,6 @@
             border-radius: 10px;
             padding: 20px;
             margin-bottom: 20px;
-        }
-
-        .post-editor h4 {
-            color: white;
-            margin-bottom: 15px;
         }
 
         .image-upload-area {
@@ -850,18 +757,12 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        .image-upload-area i {
-            font-size: 3rem;
-            color: rgba(255, 255, 255, 0.5);
-            margin-bottom: 15px;
-        }
-
         .image-preview {
-            display: none;
             max-width: 200px;
             border-radius: 10px;
             overflow: hidden;
             margin: 20px auto;
+            display: none;
         }
 
         .image-preview img {
@@ -870,142 +771,64 @@
             display: block;
         }
 
-        .user-list {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
+        /* Post Detail Page */
+        .post-detail-page {
+            display: none;
+            min-height: 100vh;
         }
 
-        .user-item {
+        .post-detail-header {
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        .post-detail-title {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .post-detail-meta {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 8px;
-            margin-bottom: 10px;
+            justify-content: center;
+            gap: 20px;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
         }
 
-        .user-item:last-child {
-            margin-bottom: 0;
+        .post-detail-image {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 30px;
         }
 
-        .user-role {
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
+        .post-detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 5% 60px;
+            font-size: 1.1rem;
+            line-height: 1.8;
         }
 
-        .role-admin {
-            background: var(--admin-color);
-            color: white;
-        }
-
-        .role-ctv {
-            background: var(--secondary-color);
-            color: white;
-        }
-
-        .role-user {
-            background: #95a5a6;
-            color: white;
-        }
-
-        .post-status {
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-
-        .status-published {
-            background: var(--success-color);
-            color: white;
-        }
-
-        .status-pending {
-            background: var(--pending-color);
-            color: white;
+        .post-detail-content p {
+            margin-bottom: 20px;
         }
 
         /* Responsive */
         @media (max-width: 992px) {
-            .about-content, .contact-content {
-                flex-direction: column;
-            }
-            
-            .about-img, .about-text {
-                width: 100%;
+            nav ul {
+                gap: 15px;
             }
             
             .hero h2 {
                 font-size: 2.2rem;
             }
             
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .admin-form-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
-                display: none;
-                position: fixed;
-                top: 80px;
-                left: 0;
-                width: 100%;
-                background: rgba(44, 62, 80, 0.95);
-                backdrop-filter: blur(10px);
-                flex-direction: column;
-                padding: 20px 0;
-                text-align: center;
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-                z-index: 99;
-            }
-            
-            nav ul.active {
-                display: flex;
-            }
-            
-            nav ul li {
-                margin: 15px 0;
-            }
-            
-            .mobile-menu-btn {
-                display: block;
-            }
-            
-            .header-content {
-                flex-wrap: wrap;
-            }
-            
-            .schedule-table {
-                font-size: 0.9rem;
-            }
-            
-            .schedule-table th, .schedule-table td {
-                padding: 15px 10px;
-            }
-            
-            .hero {
-                padding: 80px 0;
-            }
-            
-            section {
-                padding: 70px 0;
-            }
-            
-            .admin-header {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
+            .posts-container {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             }
             
             .admin-nav {
@@ -1016,33 +839,57 @@
                 flex: 1;
                 min-width: 120px;
                 text-align: center;
+                padding: 15px 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 20px;
+                padding: 15px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero {
+                margin: 20px;
+                padding: 40px 20px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .admin-content {
+                padding: 20px;
             }
         }
 
         @media (max-width: 480px) {
             .hero h2 {
-                font-size: 1.8rem;
-            }
-            
-            .section-title h2 {
                 font-size: 2rem;
             }
             
-            .logo-text h1 {
-                font-size: 1.5rem;
-            }
-            
-            .card {
-                padding: 25px 20px;
+            .section-title {
+                font-size: 1.8rem;
             }
             
             .post-card {
-                margin-bottom: 20px;
+                padding: 15px;
             }
             
             .modal-content {
-                width: 95%;
-                padding: 15px;
+                padding: 20px;
             }
         }
     </style>
@@ -1050,25 +897,49 @@
 <body>
     <!-- Login Modal -->
     <div class="modal" id="loginModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>Đăng nhập</h3>
-                <button class="close-modal" id="closeLoginModal">&times;</button>
-            </div>
-            <div class="modal-body">
+        <div class="modal-content glass">
+            <button class="close-modal" id="closeLoginModal">&times;</button>
+            <h3 class="modal-title">Đăng Nhập</h3>
+            <form id="loginForm">
                 <div class="form-group">
                     <label for="loginUsername">Tên đăng nhập</label>
-                    <input type="text" id="loginUsername" placeholder="Nhập tên đăng nhập">
+                    <input type="text" id="loginUsername" class="form-control" placeholder="Nhập tên đăng nhập" required>
                 </div>
                 <div class="form-group">
                     <label for="loginPassword">Mật khẩu</label>
-                    <input type="password" id="loginPassword" placeholder="Nhập mật khẩu">
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Nhập mật khẩu" required>
                 </div>
-                <button class="btn" id="loginBtn" style="width: 100%;">Đăng nhập</button>
+                <button type="submit" class="submit-btn">Đăng Nhập</button>
                 <p style="margin-top: 15px; text-align: center;">
-                    Tài khoản mẫu: admin / admin123
+                    Chưa có tài khoản? <a href="#" id="showRegister" style="color: var(--primary-color); font-weight: 600;">Đăng ký ngay</a>
                 </p>
-            </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content glass">
+            <button class="close-modal" id="closeRegisterModal">&times;</button>
+            <h3 class="modal-title">Đăng Ký Tài Khoản</h3>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerUsername">Tên đăng nhập</label>
+                    <input type="text" id="registerUsername" class="form-control" placeholder="Nhập tên đăng nhập" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Mật khẩu</label>
+                    <input type="password" id="registerPassword" class="form-control" placeholder="Nhập mật khẩu" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerConfirmPassword">Xác nhận mật khẩu</label>
+                    <input type="password" id="registerConfirmPassword" class="form-control" placeholder="Nhập lại mật khẩu" required>
+                </div>
+                <button type="submit" class="submit-btn">Đăng Ký</button>
+                <p style="margin-top: 15px; text-align: center;">
+                    Đã có tài khoản? <a href="#" id="showLogin" style="color: var(--primary-color); font-weight: 600;">Đăng nhập ngay</a>
+                </p>
+            </form>
         </div>
     </div>
 
@@ -1076,565 +947,403 @@
     <div id="mainWebsite">
         <!-- Header -->
         <header>
-            <div class="container header-content">
-                <div class="logo">
-                    <div class="logo-img" id="logoContainer">
-                        <div class="placeholder">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <img id="logoImageDisplay" src="" alt="Logo lớp học">
+            <div class="logo-container">
+                <div class="logo" id="siteLogo">
+                    <div class="placeholder">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="logo-text">
-                        <h1 id="classNameDisplay">Lớp 10 <span>Tin Học</span></h1>
-                        <p id="schoolNameDisplay">Trường THPT ABC</p>
-                    </div>
+                    <img id="logoImage" src="" alt="Logo lớp 10 Tin">
                 </div>
-                
-                <button class="mobile-menu-btn" id="mobileMenuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <nav>
-                    <ul id="navMenu">
-                        <li><a href="#home"><i class="fas fa-home"></i> Trang chủ</a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> Giới thiệu</a></li>
-                        <li><a href="#posts"><i class="fas fa-newspaper"></i> Bài đăng</a></li>
-                        <li><a href="#info"><i class="fas fa-users"></i> Thông tin lớp</a></li>
-                        <li><a href="#schedule"><i class="fas fa-calendar-alt"></i> Lịch học</a></li>
-                        <li><a href="#contact"><i class="fas fa-envelope"></i> Liên hệ</a></li>
-                        <li><a href="#" id="accountLink"><i class="fas fa-user"></i> <span id="accountLinkText">Tài khoản</span></a></li>
-                    </ul>
-                </nav>
+                <div class="logo-text">
+                    <h1 id="siteTitle">Lớp 10 Tin Học</h1>
+                    <p id="siteSlogan">Nơi kết nối và sáng tạo</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Trang Chủ</a></li>
+                    <li><a href="#posts">Bài Đăng</a></li>
+                    <li><a href="#schedule">Thời Khóa Biểu</a></li>
+                    <li><a href="#contact">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-section">
+                <div class="notification-icon" id="notificationIcon">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notificationCount">0</span>
+                </div>
+                <button class="login-btn" id="loginBtn">Đăng Nhập</button>
             </div>
         </header>
 
         <!-- Hero Section -->
-        <section class="hero" id="home">
-            <div class="container">
-                <div class="glass">
-                    <h2 id="heroTitleDisplay">Chào mừng đến với lớp 10 Tin học</h2>
-                    <p id="heroDescriptionDisplay">Khám phá thế giới công nghệ thông tin, phát triển tư duy lập trình và chuẩn bị hành trang cho tương lai số</p>
-                    <a href="#about" class="btn">Tìm hiểu thêm</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- About Section -->
-        <section id="about">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Giới thiệu lớp học</h2>
-                </div>
-                
-                <div class="about-content">
-                    <div class="about-img">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lớp học tin học">
-                    </div>
-                    <div class="about-text">
-                        <h3 id="aboutTitleDisplay">Lớp 10 Tin học - Nền tảng công nghệ tương lai</h3>
-                        <p id="aboutTextDisplay">Chương trình Tin học lớp 10 được thiết kế để cung cấp cho học sinh những kiến thức cơ bản và kỹ năng cần thiết trong thời đại số. Chúng tôi tập trung vào việc phát triển tư duy logic, kỹ năng giải quyết vấn đề và khả năng sáng tạo thông qua các bài học lập trình cơ bản, ứng dụng tin học văn phòng và hiểu biết về hệ thống máy tính.</p>
-                        <a href="#contact" class="btn">Liên hệ với chúng tôi</a>
-                    </div>
-                </div>
-            </div>
+        <section class="hero glass" id="home">
+            <h2 id="heroTitle">Chào mừng đến với lớp 10 Tin Học</h2>
+            <p id="heroDescription">Đây là trang web chính thức của lớp 10 Tin Học, nơi cập nhật thông tin, bài đăng, thời khóa biểu và liên hệ với ban cán sự lớp.</p>
         </section>
 
         <!-- Posts Section -->
-        <section id="posts" class="posts-section">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Bài đăng mới nhất</h2>
-                </div>
-                
-                <div class="posts-container" id="postsContainer">
-                    <!-- Posts will be loaded here -->
-                </div>
-                
-                <div class="pagination" id="pagination">
-                    <!-- Pagination will be loaded here -->
-                </div>
+        <section class="posts-section" id="posts">
+            <h2 class="section-title">Bài Đăng Mới Nhất</h2>
+            <div class="posts-container" id="postsContainer">
+                <!-- Bài đăng sẽ được tạo động bằng JavaScript -->
             </div>
-        </section>
-
-        <!-- Class Info Section -->
-        <section id="info">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Thông tin lớp học</h2>
-                </div>
-                
-                <div class="info-cards">
-                    <div class="card">
-                        <i class="fas fa-users"></i>
-                        <h3>Sĩ số lớp</h3>
-                        <p id="classSizeDisplay">35 học sinh</p>
-                        <p>Lớp được chia thành 5 nhóm học tập, mỗi nhóm 7 học sinh</p>
-                    </div>
-                    
-                    <div class="card">
-                        <i class="fas fa-chalkboard-teacher"></i>
-                        <h3>Giáo viên chủ nhiệm</h3>
-                        <p id="teacherNameDisplay">Thầy Nguyễn Văn A</p>
-                        <p>Thạc sĩ Công nghệ thông tin - 10 năm kinh nghiệm giảng dạy</p>
-                    </div>
-                    
-                    <div class="card">
-                        <i class="fas fa-laptop"></i>
-                        <h3>Cơ sở vật chất</h3>
-                        <p>Phòng máy tính hiện đại</p>
-                        <p>Máy tính cấu hình cao, phần mềm bản quyền đầy đủ</p>
-                    </div>
-                </div>
+            
+            <div class="pagination" id="pagination">
+                <!-- Pagination sẽ được tạo động -->
             </div>
         </section>
 
         <!-- Schedule Section -->
-        <section id="schedule">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Lịch học trong tuần</h2>
-                </div>
-                
-                <div class="table-container">
-                    <table class="schedule-table">
-                        <thead>
-                            <tr>
-                                <th>Thứ</th>
-                                <th>Tiết 1</th>
-                                <th>Tiết 2</th>
-                                <th>Tiết 3</th>
-                                <th>Tiết 4</th>
-                                <th>Tiết 5</th>
-                            </tr>
-                        </thead>
-                        <tbody id="scheduleBody">
-                            <!-- Schedule will be loaded here -->
-                        </tbody>
-                    </table>
-                </div>
+        <section class="schedule-section" id="schedule">
+            <h2 class="section-title">Thời Khóa Biểu</h2>
+            <div class="schedule-container">
+                <table class="schedule-table">
+                    <thead>
+                        <tr>
+                            <th>Tiết</th>
+                            <th>Thứ 2</th>
+                            <th>Thứ 3</th>
+                            <th>Thứ 4</th>
+                            <th>Thứ 5</th>
+                            <th>Thứ 6</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                        <!-- Thời khóa biểu sẽ được tạo động -->
+                    </tbody>
+                </table>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Liên hệ với lớp</h2>
-                </div>
-                
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Thông tin liên hệ</h3>
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Địa chỉ lớp học</h4>
-                                <p id="classAddressDisplay">Phòng 201, Dãy nhà B, Trường THPT ABC</p>
-                                <p id="classLocationDisplay">123 Đường XYZ, Quận 1, TP.HCM</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <div>
-                                <h4>Email liên hệ</h4>
-                                <p id="classEmailDisplay">lop10tin@thptabc.edu.vn</p>
-                                <p id="teacherEmailDisplay">giaovien@thptabc.edu.vn</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <div>
-                                <h4>Số điện thoại</h4>
-                                <p id="schoolPhoneDisplay">Điện thoại trường: (028) 1234 5678</p>
-                                <p id="teacherPhoneDisplay">Giáo viên chủ nhiệm: 0909 123 456</p>
-                            </div>
-                        </div>
+        <section class="contact-section" id="contact">
+            <h2 class="section-title">Gửi Tin Nhắn Cho Chúng Tôi</h2>
+            <div class="contact-form glass">
+                <form id="messageForm">
+                    <div class="form-group">
+                        <label for="senderName">Họ và Tên</label>
+                        <input type="text" id="senderName" class="form-control" required>
                     </div>
-                    
-                    <div class="contact-form">
-                        <h3>Gửi tin nhắn cho chúng tôi</h3>
-                        <form id="contactForm">
-                            <div class="form-group">
-                                <label for="name">Họ và tên</label>
-                                <input type="text" id="name" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="message">Nội dung tin nhắn</label>
-                                <textarea id="message" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn">Gửi tin nhắn</button>
-                        </form>
+                    <div class="form-group">
+                        <label for="senderEmail">Email</label>
+                        <input type="email" id="senderEmail" class="form-control" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="messageContent">Nội dung tin nhắn</label>
+                        <textarea id="messageContent" class="form-control" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Gửi Tin Nhắn</button>
+                </form>
+            </div>
+            
+            <div class="social-links">
+                <a href="#" class="social-icon facebook" id="facebookLink">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-icon youtube" id="youtubeLink">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="social-icon instagram" id="instagramLink">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-icon tiktok" id="tiktokLink">
+                    <i class="fab fa-tiktok"></i>
+                </a>
             </div>
         </section>
 
         <!-- Footer -->
         <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3 id="footerTitleDisplay">Lớp 10 Tin học</h3>
-                        <p id="footerDescriptionDisplay">Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.</p>
-                        <p id="footerSloganDisplay">Nơi ươm mầm tài năng công nghệ tương lai.</p>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h3>Liên kết nhanh</h3>
-                        <p><a href="#home" style="color: white; text-decoration: none;">Trang chủ</a></p>
-                        <p><a href="#about" style="color: white; text-decoration: none;">Giới thiệu</a></p>
-                        <p><a href="#posts" style="color: white; text-decoration: none;">Bài đăng</a></p>
-                        <p><a href="#contact" style="color: white; text-decoration: none;">Liên hệ</a></p>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h3>Theo dõi chúng tôi</h3>
-                        <div class="social-links">
-                            <a href="#" id="facebookLink"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" id="youtubeLink"><i class="fab fa-youtube"></i></a>
-                            <a href="#" id="instagramLink"><i class="fab fa-instagram"></i></a>
-                            <a href="#" id="tiktokLink"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                        <p style="margin-top: 20px;">Đăng ký nhận thông báo mới nhất từ lớp</p>
-                    </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lớp 10 Tin Học</h3>
+                    <p id="footerDescription">Trang web chính thức của lớp 10 Tin Học, nơi cập nhật thông tin, bài đăng và thông báo mới nhất.</p>
                 </div>
-                
-                <div class="copyright">
-                    <p id="copyrightText">&copy; 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.</p>
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <p id="contactInfo">Email: lop10tin@example.com<br>SĐT: 0123 456 789</p>
                 </div>
+                <div class="footer-section">
+                    <h3>Liên Kết Nhanh</h3>
+                    <p><a href="#home">Trang Chủ</a><br>
+                    <a href="#posts">Bài Đăng</a><br>
+                    <a href="#schedule">Thời Khóa Biểu</a><br>
+                    <a href="#contact">Liên Hệ</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Lớp 10 Tin Học. Tất cả các quyền được bảo lưu.</p>
             </div>
         </footer>
     </div>
 
-    <!-- Post Detail Page (Hidden by default) -->
-    <div id="postDetailPage" style="display: none;">
+    <!-- Post Detail Page -->
+    <div id="postDetailPage" class="post-detail-page">
         <header>
-            <div class="container header-content">
-                <div class="logo">
-                    <div class="logo-img" id="logoContainerDetail">
-                        <div class="placeholder">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <img id="logoImageDisplayDetail" src="" alt="Logo lớp học">
+            <div class="logo-container">
+                <div class="logo" id="postDetailLogo">
+                    <div class="placeholder">
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <div class="logo-text">
-                        <h1 id="classNameDisplayDetail">Lớp 10 <span>Tin Học</span></h1>
-                        <p id="schoolNameDisplayDetail">Trường THPT ABC</p>
-                    </div>
+                    <img id="postDetailLogoImage" src="" alt="Logo lớp 10 Tin">
                 </div>
-                
-                <button class="mobile-menu-btn" id="mobileMenuBtnDetail">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <nav>
-                    <ul id="navMenuDetail">
-                        <li><a href="#" id="backToHome"><i class="fas fa-arrow-left"></i> Quay lại</a></li>
-                        <li><a href="#home"><i class="fas fa-home"></i> Trang chủ</a></li>
-                        <li><a href="#about"><i class="fas fa-info-circle"></i> Giới thiệu</a></li>
-                        <li><a href="#posts"><i class="fas fa-newspaper"></i> Bài đăng</a></li>
-                        <li><a href="#" id="accountLinkDetail"><i class="fas fa-user"></i> Tài khoản</a></li>
-                    </ul>
-                </nav>
+                <div class="logo-text">
+                    <h1 id="postDetailTitle">Lớp 10 Tin Học</h1>
+                    <p id="postDetailSlogan">Nơi kết nối và sáng tạo</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" id="backToHomeBtn"><i class="fas fa-arrow-left"></i> Quay lại</a></li>
+                    <li><a href="#home">Trang Chủ</a></li>
+                    <li><a href="#posts">Bài Đăng</a></li>
+                    <li><a href="#contact">Liên Hệ</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-section">
+                <button class="login-btn" id="postDetailLoginBtn">Đăng Nhập</button>
             </div>
         </header>
 
-        <div class="post-detail-container" id="postDetailContainer">
-            <!-- Post detail will be loaded here -->
+        <div id="postDetailContent">
+            <!-- Nội dung bài đăng chi tiết sẽ được tạo động -->
         </div>
 
         <footer>
-            <div class="container">
-                <div class="footer-content">
-                    <div class="footer-section">
-                        <h3 id="footerTitleDisplayDetail">Lớp 10 Tin học</h3>
-                        <p id="footerDescriptionDisplayDetail">Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.</p>
-                        <p id="footerSloganDisplayDetail">Nơi ươm mầm tài năng công nghệ tương lai.</p>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h3>Liên kết nhanh</h3>
-                        <p><a href="#home" style="color: white; text-decoration: none;">Trang chủ</a></p>
-                        <p><a href="#about" style="color: white; text-decoration: none;">Giới thiệu</a></p>
-                        <p><a href="#posts" style="color: white; text-decoration: none;">Bài đăng</a></p>
-                        <p><a href="#contact" style="color: white; text-decoration: none;">Liên hệ</a></p>
-                    </div>
-                    
-                    <div class="footer-section">
-                        <h3>Theo dõi chúng tôi</h3>
-                        <div class="social-links">
-                            <a href="#" id="facebookLinkDetail"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" id="youtubeLinkDetail"><i class="fab fa-youtube"></i></a>
-                            <a href="#" id="instagramLinkDetail"><i class="fab fa-instagram"></i></a>
-                            <a href="#" id="tiktokLinkDetail"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                        <p style="margin-top: 20px;">Đăng ký nhận thông báo mới nhất từ lớp</p>
-                    </div>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Lớp 10 Tin Học</h3>
+                    <p id="postDetailFooterDescription">Trang web chính thức của lớp 10 Tin Học, nơi cập nhật thông tin, bài đăng và thông báo mới nhất.</p>
                 </div>
-                
-                <div class="copyright">
-                    <p id="copyrightTextDetail">&copy; 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.</p>
+                <div class="footer-section">
+                    <h3>Liên Hệ</h3>
+                    <p id="postDetailContactInfo">Email: lop10tin@example.com<br>SĐT: 0123 456 789</p>
                 </div>
+                <div class="footer-section">
+                    <h3>Liên Kết Nhanh</h3>
+                    <p><a href="#home">Trang Chủ</a><br>
+                    <a href="#posts">Bài Đăng</a><br>
+                    <a href="#schedule">Thời Khóa Biểu</a><br>
+                    <a href="#contact">Liên Hệ</a></p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Lớp 10 Tin Học. Tất cả các quyền được bảo lưu.</p>
             </div>
         </footer>
     </div>
 
-    <!-- Admin Page (Hidden by default) -->
-    <div id="adminPage" style="display: none;">
-        <div class="admin-page">
-            <div class="admin-container">
-                <div class="admin-header">
-                    <h1><i class="fas fa-cogs"></i> Trang Quản Trị Lớp 10 Tin Học</h1>
-                    <div>
-                        <span style="color: white; margin-right: 15px;" id="adminUsernameDisplay"></span>
-                        <button class="btn btn-small" id="logoutAdminBtn">Đăng xuất</button>
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel">
+        <div class="admin-container">
+            <div class="admin-header">
+                <h2><i class="fas fa-cogs"></i> Trang Quản Trị Lớp 10 Tin Học</h2>
+                <div>
+                    <span style="color: white; margin-right: 15px;" id="adminUsername"></span>
+                    <button class="admin-btn btn-small" id="logoutAdminBtn">Đăng xuất</button>
+                </div>
+            </div>
+            
+            <div class="admin-nav">
+                <button class="admin-tab active" data-tab="general">Thông tin chung</button>
+                <button class="admin-tab" data-tab="posts">Quản lý bài đăng</button>
+                <button class="admin-tab" data-tab="schedule">Thời khóa biểu</button>
+                <button class="admin-tab" data-tab="contact">Liên hệ & MXH</button>
+                <button class="admin-tab" data-tab="users" id="usersTab">Quản lý tài khoản</button>
+                <button class="admin-tab" data-tab="notifications">Tin nhắn <span id="adminNotificationBadge" class="notification-badge" style="position: static; margin-left: 5px; display: none;">0</span></button>
+            </div>
+            
+            <div class="admin-content">
+                <!-- General Tab -->
+                <div class="admin-section active" id="generalTab">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-school"></i> Thông tin lớp học</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tên lớp</label>
+                                <input type="text" id="adminClassName" class="form-control" value="Lớp 10 Tin Học">
+                            </div>
+                            <div class="form-group">
+                                <label>Sĩ số lớp</label>
+                                <input type="text" id="adminClassSize" class="form-control" value="35 học sinh">
+                            </div>
+                            <div class="form-group">
+                                <label>Tên giáo viên</label>
+                                <input type="text" id="adminTeacherName" class="form-control" value="Thầy Nguyễn Văn A">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3><i class="fas fa-image"></i> Logo lớp học</h3>
+                        <div class="form-group">
+                            <label>Tải lên logo mới</label>
+                            <div class="upload-area" id="logoUploadArea">
+                                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: rgba(255,255,255,0.7); margin-bottom: 10px;"></i>
+                                <p>Click để tải logo lên</p>
+                                <input type="file" id="logoUploadInput" accept="image/*" style="display: none;">
+                            </div>
+                            <div class="image-preview" id="logoPreview">
+                                <img id="logoPreviewImage" src="" alt="Logo preview">
+                            </div>
+                            <button class="admin-btn" id="saveLogoBtn">Lưu logo</button>
+                        </div>
+                    </div>
+                    
+                    <div class="admin-card">
+                        <h3><i class="fas fa-edit"></i> Nội dung trang chủ</h3>
+                        <div class="form-group">
+                            <label>Tiêu đề trang chủ</label>
+                            <input type="text" id="adminHeroTitle" class="form-control" value="Chào mừng đến với lớp 10 Tin Học">
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả trang chủ</label>
+                            <textarea id="adminHeroDescription" class="form-control" rows="3">Đây là trang web chính thức của lớp 10 Tin Học, nơi cập nhật thông tin, bài đăng, thời khóa biểu và liên hệ với ban cán sự lớp.</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>Khẩu hiệu</label>
+                            <input type="text" id="adminSiteSlogan" class="form-control" value="Nơi kết nối và sáng tạo">
+                        </div>
+                        <button class="admin-btn" id="saveGeneralBtn">Lưu thay đổi</button>
                     </div>
                 </div>
                 
-                <div class="admin-nav">
-                    <button class="admin-tab active" data-tab="general">Thông tin chung</button>
-                    <button class="admin-tab" data-tab="posts">Quản lý bài đăng</button>
-                    <button class="admin-tab" data-tab="schedule">Thời khóa biểu</button>
-                    <button class="admin-tab" data-tab="contact">Liên hệ & MXH</button>
-                    <button class="admin-tab" data-tab="users" id="usersTab">Quản lý tài khoản</button>
-                    <button class="admin-tab" data-tab="notifications">Tin nhắn <span id="adminNotificationBadge" class="notification-badge" style="position: static; margin-left: 5px; display: none;">0</span></button>
-                </div>
-                
-                <div class="admin-content">
-                    <!-- General Tab -->
-                    <div class="admin-section active" id="generalTab">
-                        <div class="admin-card">
-                            <h3><i class="fas fa-school"></i> Thông tin lớp học</h3>
-                            <div class="admin-form-grid">
-                                <div class="form-group">
-                                    <label>Tên lớp</label>
-                                    <input type="text" id="adminClassName" value="Lớp 10 Tin Học">
-                                </div>
-                                <div class="form-group">
-                                    <label>Tên trường</label>
-                                    <input type="text" id="adminSchoolName" value="Trường THPT ABC">
-                                </div>
-                                <div class="form-group">
-                                    <label>Sĩ số lớp</label>
-                                    <input type="text" id="adminClassSize" value="35 học sinh">
-                                </div>
-                                <div class="form-group">
-                                    <label>Tên giáo viên</label>
-                                    <input type="text" id="adminTeacherName" value="Thầy Nguyễn Văn A">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="admin-card">
-                            <h3><i class="fas fa-image"></i> Logo lớp học</h3>
+                <!-- Posts Tab -->
+                <div class="admin-section" id="postsTab">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-plus-circle"></i> Tạo bài đăng mới</h3>
+                        <div class="post-editor">
                             <div class="form-group">
-                                <label>Tải lên logo mới</label>
-                                <div class="image-upload-area" id="logoUploadArea">
+                                <label>Tiêu đề bài đăng</label>
+                                <input type="text" id="postTitle" class="form-control" placeholder="Nhập tiêu đề bài đăng">
+                            </div>
+                            <div class="form-group">
+                                <label>Nội dung bài đăng</label>
+                                <textarea id="postContent" class="form-control" rows="6" placeholder="Nhập nội dung bài đăng"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Hình ảnh bài đăng</label>
+                                <div class="image-upload-area" id="postImageUploadArea">
                                     <i class="fas fa-cloud-upload-alt"></i>
-                                    <p>Click để tải logo lên</p>
-                                    <input type="file" id="logoUploadInput" accept="image/*" style="display: none;">
+                                    <p>Click để tải hình ảnh lên</p>
+                                    <input type="file" id="postImageUploadInput" accept="image/*" style="display: none;">
                                 </div>
-                                <div class="image-preview" id="logoPreview">
-                                    <img id="logoPreviewImage" src="" alt="Logo preview">
+                                <div class="image-preview" id="postImagePreview">
+                                    <img id="postImagePreviewImage" src="" alt="Post image preview">
                                 </div>
-                                <button class="btn" id="saveLogoBtn" style="margin-top: 15px;">Lưu logo</button>
                             </div>
-                        </div>
-                        
-                        <div class="admin-card">
-                            <h3><i class="fas fa-edit"></i> Nội dung trang chủ</h3>
-                            <div class="form-group">
-                                <label>Tiêu đề trang chủ</label>
-                                <input type="text" id="adminHeroTitle" value="Chào mừng đến với lớp 10 Tin học">
-                            </div>
-                            <div class="form-group">
-                                <label>Mô tả trang chủ</label>
-                                <textarea id="adminHeroDescription" rows="3">Khám phá thế giới công nghệ thông tin, phát triển tư duy lập trình và chuẩn bị hành trang cho tương lai số</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Tiêu đề giới thiệu</label>
-                                <input type="text" id="adminAboutTitle" value="Lớp 10 Tin học - Nền tảng công nghệ tương lai">
-                            </div>
-                            <div class="form-group">
-                                <label>Nội dung giới thiệu</label>
-                                <textarea id="adminAboutText" rows="5">Chương trình Tin học lớp 10 được thiết kế để cung cấp cho học sinh những kiến thức cơ bản và kỹ năng cần thiết trong thời đại số. Chúng tôi tập trung vào việc phát triển tư duy logic, kỹ năng giải quyết vấn đề và khả năng sáng tạo thông qua các bài học lập trình cơ bản, ứng dụng tin học văn phòng và hiểu biết về hệ thống máy tính.</textarea>
-                            </div>
-                            <button class="btn" id="saveGeneralBtn">Lưu thay đổi</button>
+                            <button class="admin-btn" id="createPostBtn">Đăng bài</button>
                         </div>
                     </div>
                     
-                    <!-- Posts Tab -->
-                    <div class="admin-section" id="postsTab">
-                        <div class="admin-card">
-                            <h3><i class="fas fa-plus-circle"></i> Tạo bài đăng mới</h3>
-                            <div class="post-editor">
-                                <div class="form-group">
-                                    <label>Tiêu đề bài đăng</label>
-                                    <input type="text" id="postTitle" placeholder="Nhập tiêu đề bài đăng">
-                                </div>
-                                <div class="form-group">
-                                    <label>Nội dung bài đăng</label>
-                                    <textarea id="postContent" rows="6" placeholder="Nhập nội dung bài đăng"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Hình ảnh bài đăng</label>
-                                    <div class="image-upload-area" id="postImageUploadArea">
-                                        <i class="fas fa-cloud-upload-alt"></i>
-                                        <p>Click để tải hình ảnh lên</p>
-                                        <input type="file" id="postImageUploadInput" accept="image/*" style="display: none;">
-                                    </div>
-                                    <div class="image-preview" id="postImagePreview">
-                                        <img id="postImagePreviewImage" src="" alt="Post image preview">
-                                    </div>
-                                </div>
-                                <button class="btn" id="createPostBtn">Đăng bài</button>
+                    <div class="admin-card">
+                        <h3><i class="fas fa-list"></i> Quản lý bài đăng</h3>
+                        <div id="adminPostsList">
+                            <!-- Danh sách bài đăng sẽ được tạo động -->
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Schedule Tab -->
+                <div class="admin-section" id="scheduleTab">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-calendar-alt"></i> Chỉnh sửa thời khóa biểu</h3>
+                        <div id="scheduleEditor">
+                            <!-- Bộ chỉnh sửa thời khóa biểu sẽ được tạo động -->
+                        </div>
+                        <button class="admin-btn" id="saveScheduleBtn">Lưu thời khóa biểu</button>
+                    </div>
+                </div>
+                
+                <!-- Contact Tab -->
+                <div class="admin-section" id="contactTab">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-address-book"></i> Thông tin liên hệ</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Email liên hệ</label>
+                                <input type="email" id="adminContactEmail" class="form-control" value="lop10tin@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label>Số điện thoại</label>
+                                <input type="text" id="adminContactPhone" class="form-control" value="0123 456 789">
                             </div>
                         </div>
                         
-                        <div class="admin-card">
-                            <h3><i class="fas fa-list"></i> Quản lý bài đăng</h3>
-                            <div id="postsList">
-                                <!-- Posts will be loaded here -->
-                            </div>
+                        <div class="form-group">
+                            <label>Mô tả chân trang</label>
+                            <textarea id="adminFooterDescription" class="form-control" rows="3">Trang web chính thức của lớp 10 Tin Học, nơi cập nhật thông tin, bài đăng và thông báo mới nhất.</textarea>
                         </div>
                     </div>
                     
-                    <!-- Schedule Tab -->
-                    <div class="admin-section" id="scheduleTab">
-                        <div class="admin-card">
-                            <h3><i class="fas fa-calendar-alt"></i> Chỉnh sửa thời khóa biểu</h3>
-                            <div id="scheduleEditor">
-                                <!-- Schedule editor will be loaded here -->
+                    <div class="admin-card">
+                        <h3><i class="fas fa-share-alt"></i> Liên kết mạng xã hội</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Facebook</label>
+                                <input type="url" id="adminFacebookLink" class="form-control" placeholder="https://facebook.com/...">
                             </div>
-                            <button class="btn" id="saveScheduleBtn" style="margin-top: 20px;">Lưu thời khóa biểu</button>
+                            <div class="form-group">
+                                <label>YouTube</label>
+                                <input type="url" id="adminYoutubeLink" class="form-control" placeholder="https://youtube.com/...">
+                            </div>
+                            <div class="form-group">
+                                <label>Instagram</label>
+                                <input type="url" id="adminInstagramLink" class="form-control" placeholder="https://instagram.com/...">
+                            </div>
+                            <div class="form-group">
+                                <label>TikTok</label>
+                                <input type="url" id="adminTiktokLink" class="form-control" placeholder="https://tiktok.com/...">
+                            </div>
                         </div>
+                        <button class="admin-btn" id="saveContactBtn">Lưu thay đổi</button>
+                    </div>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="admin-section" id="usersTabContent">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-user-plus"></i> Tạo tài khoản mới</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Tên đăng nhập</label>
+                                <input type="text" id="newAccountUsername" class="form-control" placeholder="Nhập tên đăng nhập">
+                            </div>
+                            <div class="form-group">
+                                <label>Mật khẩu</label>
+                                <input type="password" id="newAccountPassword" class="form-control" placeholder="Nhập mật khẩu">
+                            </div>
+                            <div class="form-group">
+                                <label>Vai trò</label>
+                                <select id="accountRoleSelect" class="form-control">
+                                    <option value="user">Người dùng</option>
+                                    <option value="ctv">Cộng tác viên</option>
+                                    <option value="admin">Quản trị viên</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button class="admin-btn" id="createNewAccountBtn">Tạo tài khoản</button>
                     </div>
                     
-                    <!-- Contact Tab -->
-                    <div class="admin-section" id="contactTab">
-                        <div class="admin-card">
-                            <h3><i class="fas fa-address-book"></i> Thông tin liên hệ</h3>
-                            <div class="admin-form-grid">
-                                <div class="form-group">
-                                    <label>Địa chỉ lớp học</label>
-                                    <input type="text" id="adminClassAddress" value="Phòng 201, Dãy nhà B, Trường THPT ABC">
-                                </div>
-                                <div class="form-group">
-                                    <label>Địa chỉ chi tiết</label>
-                                    <input type="text" id="adminClassLocation" value="123 Đường XYZ, Quận 1, TP.HCM">
-                                </div>
-                                <div class="form-group">
-                                    <label>Email lớp</label>
-                                    <input type="email" id="adminClassEmail" value="lop10tin@thptabc.edu.vn">
-                                </div>
-                                <div class="form-group">
-                                    <label>Email giáo viên</label>
-                                    <input type="email" id="adminTeacherEmail" value="giaovien@thptabc.edu.vn">
-                                </div>
-                                <div class="form-group">
-                                    <label>SĐT trường</label>
-                                    <input type="text" id="adminSchoolPhone" value="(028) 1234 5678">
-                                </div>
-                                <div class="form-group">
-                                    <label>SĐT giáo viên</label>
-                                    <input type="text" id="adminTeacherPhone" value="0909 123 456">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="admin-card">
-                            <h3><i class="fas fa-share-alt"></i> Liên kết mạng xã hội</h3>
-                            <div class="admin-form-grid">
-                                <div class="form-group">
-                                    <label>Facebook</label>
-                                    <input type="url" id="adminFacebookLink" placeholder="https://facebook.com/...">
-                                </div>
-                                <div class="form-group">
-                                    <label>YouTube</label>
-                                    <input type="url" id="adminYoutubeLink" placeholder="https://youtube.com/...">
-                                </div>
-                                <div class="form-group">
-                                    <label>Instagram</label>
-                                    <input type="url" id="adminInstagramLink" placeholder="https://instagram.com/...">
-                                </div>
-                                <div class="form-group">
-                                    <label>TikTok</label>
-                                    <input type="url" id="adminTiktokLink" placeholder="https://tiktok.com/...">
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="admin-card">
-                            <h3><i class="fas fa-file-alt"></i> Nội dung chân trang</h3>
-                            <div class="form-group">
-                                <label>Tiêu đề chân trang</label>
-                                <input type="text" id="adminFooterTitle" value="Lớp 10 Tin học">
-                            </div>
-                            <div class="form-group">
-                                <label>Mô tả chân trang</label>
-                                <textarea id="adminFooterDescription" rows="2">Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Khẩu hiệu</label>
-                                <input type="text" id="adminFooterSlogan" value="Nơi ươm mầm tài năng công nghệ tương lai.">
-                            </div>
-                            <div class="form-group">
-                                <label>Bản quyền</label>
-                                <input type="text" id="adminCopyrightText" value="© 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.">
-                            </div>
-                            <button class="btn" id="saveContactBtn">Lưu thay đổi</button>
+                    <div class="admin-card">
+                        <h3><i class="fas fa-users"></i> Danh sách tài khoản</h3>
+                        <div class="user-list" id="adminUsersList">
+                            <!-- Danh sách tài khoản sẽ được tạo động -->
                         </div>
                     </div>
-                    
-                    <!-- Users Tab -->
-                    <div class="admin-section" id="usersTabContent">
-                        <div class="admin-card">
-                            <h3><i class="fas fa-user-plus"></i> Tạo tài khoản mới</h3>
-                            <div class="admin-form-grid">
-                                <div class="form-group">
-                                    <label>Tên đăng nhập</label>
-                                    <input type="text" id="newAccountUsername" placeholder="Nhập tên đăng nhập">
-                                </div>
-                                <div class="form-group">
-                                    <label>Mật khẩu</label>
-                                    <input type="password" id="newAccountPassword" placeholder="Nhập mật khẩu">
-                                </div>
-                                <div class="form-group">
-                                    <label>Vai trò</label>
-                                    <select id="accountRoleSelect">
-                                        <option value="user">Người dùng</option>
-                                        <option value="ctv">Cộng tác viên</option>
-                                        <option value="admin">Quản trị viên</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button class="btn" id="createNewAccountBtn">Tạo tài khoản</button>
-                        </div>
-                        
-                        <div class="admin-card">
-                            <h3><i class="fas fa-users"></i> Danh sách tài khoản</h3>
-                            <div class="user-list" id="usersList">
-                                <!-- Users will be loaded here -->
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- Notifications Tab -->
-                    <div class="admin-section" id="notificationsTab">
-                        <div class="admin-card">
-                            <h3><i class="fas fa-envelope"></i> Tin nhắn từ liên hệ</h3>
-                            <div id="adminNotificationsList">
-                                <!-- Contact messages will be loaded here -->
-                            </div>
+                </div>
+                
+                <!-- Notifications Tab -->
+                <div class="admin-section" id="notificationsTab">
+                    <div class="admin-card">
+                        <h3><i class="fas fa-envelope"></i> Tin nhắn từ liên hệ</h3>
+                        <div id="adminNotificationsList">
+                            <!-- Tin nhắn sẽ được tạo động -->
                         </div>
                     </div>
                 </div>
@@ -1647,126 +1356,107 @@
         const storage = {
             // Default data
             logo: localStorage.getItem('logo') || '',
-            className: localStorage.getItem('className') || 'Lớp 10 Tin Học',
-            schoolName: localStorage.getItem('schoolName') || 'Trường THPT ABC',
+            siteTitle: localStorage.getItem('siteTitle') || 'Lớp 10 Tin Học',
+            siteSlogan: localStorage.getItem('siteSlogan') || 'Nơi kết nối và sáng tạo',
+            heroTitle: localStorage.getItem('heroTitle') || 'Chào mừng đến với lớp 10 Tin Học',
+            heroDescription: localStorage.getItem('heroDescription') || 'Đây là trang web chính thức của lớp 10 Tin Học, nơi cập nhật thông tin, bài đăng, thời khóa biểu và liên hệ với ban cán sự lớp.',
             classSize: localStorage.getItem('classSize') || '35 học sinh',
             teacherName: localStorage.getItem('teacherName') || 'Thầy Nguyễn Văn A',
-            heroTitle: localStorage.getItem('heroTitle') || 'Chào mừng đến với lớp 10 Tin học',
-            heroDescription: localStorage.getItem('heroDescription') || 'Khám phá thế giới công nghệ thông tin, phát triển tư duy lập trình và chuẩn bị hành trang cho tương lai số',
-            aboutTitle: localStorage.getItem('aboutTitle') || 'Lớp 10 Tin học - Nền tảng công nghệ tương lai',
-            aboutText: localStorage.getItem('aboutText') || 'Chương trình Tin học lớp 10 được thiết kế để cung cấp cho học sinh những kiến thức cơ bản và kỹ năng cần thiết trong thời đại số. Chúng tôi tập trung vào việc phát triển tư duy logic, kỹ năng giải quyết vấn đề và khả năng sáng tạo thông qua các bài học lập trình cơ bản, ứng dụng tin học văn phòng và hiểu biết về hệ thống máy tính.',
+            contactEmail: localStorage.getItem('contactEmail') || 'lop10tin@example.com',
+            contactPhone: localStorage.getItem('contactPhone') || '0123 456 789',
+            footerDescription: localStorage.getItem('footerDescription') || 'Trang web chính thức của lớp 10 Tin Học, nơi cập nhật thông tin, bài đăng và thông báo mới nhất.',
+            
+            // Social links
+            socialLinks: JSON.parse(localStorage.getItem('socialLinks')) || {
+                facebook: '#',
+                youtube: '#',
+                instagram: '#',
+                tiktok: '#'
+            },
             
             // Posts
             posts: JSON.parse(localStorage.getItem('posts')) || [
                 {
                     id: 1,
-                    title: 'Chào mừng năm học mới',
-                    content: 'Năm học mới đã bắt đầu với nhiều hoạt động thú vị và bổ ích cho các em học sinh lớp 10 Tin học. Chúng ta sẽ có những buổi học lập trình Python cơ bản, tìm hiểu về cấu trúc dữ liệu và thuật toán, cũng như tham gia các cuộc thi tin học cấp trường.',
+                    title: 'Chào mừng năm học mới 2023-2024',
+                    content: 'Chào mừng tất cả các bạn học sinh lớp 10 Tin Học đến với năm học mới. Chúng ta sẽ cùng nhau khám phá thế giới công nghệ thông tin đầy thú vị. Năm học này, lớp sẽ có nhiều hoạt động bổ ích như: học lập trình Python, tham gia các cuộc thi tin học, và các buổi ngoại khóa tại các công ty công nghệ. Chúc các bạn có một năm học đầy hứng khởi và thành công!',
                     image: '',
                     date: '05/09/2023',
                     author: 'Admin',
-                    status: 'published',
+                    status: 'approved',
                     slug: 'chao-mung-nam-hoc-moi'
                 },
                 {
                     id: 2,
-                    title: 'Cuộc thi lập trình sắp tới',
-                    content: 'Lớp sẽ tổ chức cuộc thi lập trình cấp lớp vào cuối tháng 10. Các em hãy chuẩn bị thật tốt nhé! Cuộc thi sẽ có các hạng mục: lập trình Python, thiết kế web cơ bản, và giải thuật toán. Phần thưởng hấp dẫn đang chờ đợi các bạn!',
+                    title: 'Lịch thi giữa kỳ I',
+                    content: 'Thông báo lịch thi giữa kỳ I năm học 2023-2024. Các môn thi bao gồm: Toán, Văn, Anh, Lý, Hóa. Chi tiết lịch thi như sau:\n\n- Toán: Thứ 2, tiết 1-2\n- Văn: Thứ 3, tiết 3-4\n- Anh: Thứ 4, tiết 1-2\n- Lý: Thứ 5, tiết 3-4\n- Hóa: Thứ 6, tiết 1-2\n\nCác em học sinh chú ý ôn tập kỹ và có mặt đúng giờ.',
                     image: '',
-                    date: '15/09/2023',
-                    author: 'CTV1',
-                    status: 'published',
-                    slug: 'cuoc-thi-lap-trinh-sap-toi'
-                },
-                {
-                    id: 3,
-                    title: 'Buổi học ngoại khóa tại công ty công nghệ',
-                    content: 'Tuần tới lớp sẽ có chuyến tham quan thực tế tại công ty công nghệ ABC. Đây là cơ hội tốt để các em học sinh được trải nghiệm môi trường làm việc thực tế và học hỏi từ các chuyên gia trong ngành.',
-                    image: '',
-                    date: '20/09/2023',
-                    author: 'CTV2',
-                    status: 'pending',
-                    slug: 'buoi-hoc-ngoai-khoa-cong-ty-cong-nghe'
+                    date: '10/10/2023',
+                    author: 'Admin',
+                    status: 'approved',
+                    slug: 'lich-thi-giua-ky'
                 }
             ],
             
             // Schedule - 5 tiết mỗi ngày
             schedule: JSON.parse(localStorage.getItem('schedule')) || [
-                { day: 'Thứ 2', lesson1: 'Toán', lesson2: 'Văn', lesson3: 'Tin học', lesson4: 'Lý', lesson5: 'Sinh' },
-                { day: 'Thứ 3', lesson1: 'Anh văn', lesson2: 'Tin học', lesson3: 'Hóa', lesson4: 'Sinh', lesson5: 'Sử' },
-                { day: 'Thứ 4', lesson1: 'Toán', lesson2: 'Tin học', lesson3: 'Sử', lesson4: 'Địa', lesson5: 'GDCD' },
-                { day: 'Thứ 5', lesson1: 'Văn', lesson2: 'Anh văn', lesson3: 'Thể dục', lesson4: 'Tin học', lesson5: 'Toán' },
-                { day: 'Thứ 6', lesson1: 'Lý', lesson2: 'Hóa', lesson3: 'GDCD', lesson4: 'Sinh hoạt lớp', lesson5: 'Văn' }
+                ['', 'Toán', 'Văn', 'Anh', 'Lý', 'Tin'],
+                ['Toán', 'Sử', 'Địa', 'GDCD', 'Sinh', 'Hóa'],
+                ['Văn', 'Toán', 'Tin', 'Anh', 'Thể Dục', 'Toán'],
+                ['Lý', 'Hóa', 'Văn', 'Toán', 'Anh', 'Sinh'],
+                ['Tin', 'Anh', 'Toán', 'Sử', 'Địa', 'Văn']
             ],
             
-            // Contact information
-            classAddress: localStorage.getItem('classAddress') || 'Phòng 201, Dãy nhà B, Trường THPT ABC',
-            classLocation: localStorage.getItem('classLocation') || '123 Đường XYZ, Quận 1, TP.HCM',
-            classEmail: localStorage.getItem('classEmail') || 'lop10tin@thptabc.edu.vn',
-            teacherEmail: localStorage.getItem('teacherEmail') || 'giaovien@thptabc.edu.vn',
-            schoolPhone: localStorage.getItem('schoolPhone') || '(028) 1234 5678',
-            teacherPhone: localStorage.getItem('teacherPhone') || '0909 123 456',
-            
-            // Social media links
-            facebookLink: localStorage.getItem('facebookLink') || '#',
-            youtubeLink: localStorage.getItem('youtubeLink') || '#',
-            instagramLink: localStorage.getItem('instagramLink') || '#',
-            tiktokLink: localStorage.getItem('tiktokLink') || '#',
-            
-            // Footer content
-            footerTitle: localStorage.getItem('footerTitle') || 'Lớp 10 Tin học',
-            footerDescription: localStorage.getItem('footerDescription') || 'Trang thông tin chính thức của lớp 10 Tin học, Trường THPT ABC.',
-            footerSlogan: localStorage.getItem('footerSlogan') || 'Nơi ươm mầm tài năng công nghệ tương lai.',
-            copyrightText: localStorage.getItem('copyrightText') || '© 2023 Lớp 10 Tin học - Trường THPT ABC. Tất cả các quyền được bảo lưu.',
-            
-            // Users
-            users: JSON.parse(localStorage.getItem('users')) || [
-                { username: 'admin', password: 'admin123', role: 'admin' },
-                { username: 'ctv1', password: 'ctv123', role: 'ctv' },
-                { username: 'ctv2', password: 'ctv123', role: 'ctv' }
-            ],
-            
-            // Notifications (contact messages)
-            notifications: JSON.parse(localStorage.getItem('notifications')) || [
+            // Messages
+            messages: JSON.parse(localStorage.getItem('messages')) || [
                 {
                     id: 1,
-                    name: 'Phụ huynh Nguyễn Văn A',
-                    email: 'phuhuynh@gmail.com',
-                    message: 'Xin hỏi lịch họp phụ huynh sắp tới của lớp 10 Tin khi nào ạ?',
-                    date: '10/09/2023 14:30',
+                    name: 'Nguyễn Văn A',
+                    email: 'nguyenvana@example.com',
+                    content: 'Cho em hỏi lịch học bù môn Tin vào khi nào ạ?',
+                    date: '10/10/2023',
                     read: false
                 },
                 {
                     id: 2,
-                    name: 'Học sinh Trần Thị B',
-                    email: 'hocsinh@gmail.com',
-                    message: 'Em muốn đăng ký tham gia câu lạc bộ lập trình. Em cần làm thủ tục gì ạ?',
-                    date: '12/09/2023 09:15',
+                    name: 'Trần Thị B',
+                    email: 'tranthib@example.com',
+                    content: 'Em muốn đăng ký tham gia câu lạc bộ lập trình. Em cần làm gì?',
+                    date: '12/10/2023',
                     read: true
                 }
+            ],
+            
+            // Users
+            users: JSON.parse(localStorage.getItem('users')) || [
+                { id: 1, username: 'admin', password: 'admin123', role: 'admin', created: '01/09/2023' },
+                { id: 2, username: 'ctv1', password: 'ctv123', role: 'ctv', created: '05/09/2023' },
+                { id: 3, username: 'ctv2', password: 'ctv123', role: 'ctv', created: '10/09/2023' }
             ],
             
             // Current user
             currentUser: null,
             
-            // Pagination settings
+            // Pagination
             currentPage: 1,
             postsPerPage: 6
         };
 
         // DOM Elements
         const mainWebsite = document.getElementById('mainWebsite');
-        const adminPage = document.getElementById('adminPage');
+        const adminPanel = document.getElementById('adminPanel');
         const postDetailPage = document.getElementById('postDetailPage');
         const loginModal = document.getElementById('loginModal');
-        const accountLink = document.getElementById('accountLink');
-        const accountLinkText = document.getElementById('accountLinkText');
-        const accountLinkDetail = document.getElementById('accountLinkDetail');
-        const closeLoginModal = document.getElementById('closeLoginModal');
+        const registerModal = document.getElementById('registerModal');
         const loginBtn = document.getElementById('loginBtn');
+        const postDetailLoginBtn = document.getElementById('postDetailLoginBtn');
+        const notificationIcon = document.getElementById('notificationIcon');
+        const notificationCount = document.getElementById('notificationCount');
+        const adminNotificationBadge = document.getElementById('adminNotificationBadge');
         const logoutAdminBtn = document.getElementById('logoutAdminBtn');
-        const contactForm = document.getElementById('contactForm');
-        const backToHome = document.getElementById('backToHome');
+        const backToHomeBtn = document.getElementById('backToHomeBtn');
+        const showRegister = document.getElementById('showRegister');
+        const showLogin = document.getElementById('showLogin');
         
         // Initialize the website
         function initWebsite() {
@@ -1779,7 +1469,7 @@
             const loggedInUser = localStorage.getItem('loggedInUser');
             if (loggedInUser) {
                 storage.currentUser = JSON.parse(loggedInUser);
-                updateAccountLink();
+                updateLoginButton();
             }
             
             // Check if we're viewing a post detail
@@ -1792,128 +1482,93 @@
         
         // Update UI from storage
         function updateUIFromStorage() {
-            // Logo - CHỈ logo hình ảnh, không có chữ
-            const logoContainer = document.getElementById('logoContainer');
-            const logoImageDisplay = document.getElementById('logoImageDisplay');
-            const logoContainerDetail = document.getElementById('logoContainerDetail');
-            const logoImageDisplayDetail = document.getElementById('logoImageDisplayDetail');
+            // Update logo
+            const logo = document.getElementById('siteLogo');
+            const logoImage = document.getElementById('logoImage');
+            const postDetailLogo = document.getElementById('postDetailLogo');
+            const postDetailLogoImage = document.getElementById('postDetailLogoImage');
             
             if (storage.logo) {
-                logoImageDisplay.src = storage.logo;
-                logoImageDisplay.style.display = 'block';
-                document.querySelector('#logoContainer .placeholder').style.display = 'none';
-                logoContainer.classList.add('has-image');
-                
-                logoImageDisplayDetail.src = storage.logo;
-                logoImageDisplayDetail.style.display = 'block';
-                document.querySelector('#logoContainerDetail .placeholder').style.display = 'none';
-                logoContainerDetail.classList.add('has-image');
-            } else {
-                logoImageDisplay.style.display = 'none';
-                document.querySelector('#logoContainer .placeholder').style.display = 'flex';
-                logoContainer.classList.remove('has-image');
-                
-                logoImageDisplayDetail.style.display = 'none';
-                document.querySelector('#logoContainerDetail .placeholder').style.display = 'flex';
-                logoContainerDetail.classList.remove('has-image');
+                logoImage.src = storage.logo;
+                logo.classList.add('has-image');
+                postDetailLogoImage.src = storage.logo;
+                postDetailLogo.classList.add('has-image');
+                document.getElementById('logoPreviewImage').src = storage.logo;
+                document.getElementById('logoPreview').style.display = 'block';
             }
             
-            // Class information
-            document.getElementById('classNameDisplay').innerHTML = storage.className + ' <span>Tin Học</span>';
-            document.getElementById('schoolNameDisplay').textContent = storage.schoolName;
-            document.getElementById('classSizeDisplay').textContent = storage.classSize;
-            document.getElementById('teacherNameDisplay').textContent = storage.teacherName;
+            // Update text content
+            document.getElementById('siteTitle').textContent = storage.siteTitle;
+            document.getElementById('siteSlogan').textContent = storage.siteSlogan;
+            document.getElementById('postDetailTitle').textContent = storage.siteTitle;
+            document.getElementById('postDetailSlogan').textContent = storage.siteSlogan;
+            document.getElementById('heroTitle').textContent = storage.heroTitle;
+            document.getElementById('heroDescription').textContent = storage.heroDescription;
+            document.getElementById('contactInfo').innerHTML = `Email: ${storage.contactEmail}<br>SĐT: ${storage.contactPhone}`;
+            document.getElementById('postDetailContactInfo').innerHTML = `Email: ${storage.contactEmail}<br>SĐT: ${storage.contactPhone}`;
+            document.getElementById('footerDescription').textContent = storage.footerDescription;
+            document.getElementById('postDetailFooterDescription').textContent = storage.footerDescription;
             
-            document.getElementById('classNameDisplayDetail').innerHTML = storage.className + ' <span>Tin Học</span>';
-            document.getElementById('schoolNameDisplayDetail').textContent = storage.schoolName;
+            // Update social links
+            document.getElementById('facebookLink').href = storage.socialLinks.facebook;
+            document.getElementById('youtubeLink').href = storage.socialLinks.youtube;
+            document.getElementById('instagramLink').href = storage.socialLinks.instagram;
+            document.getElementById('tiktokLink').href = storage.socialLinks.tiktok;
             
-            // Hero section
-            document.getElementById('heroTitleDisplay').textContent = storage.heroTitle;
-            document.getElementById('heroDescriptionDisplay').textContent = storage.heroDescription;
-            
-            // About section
-            document.getElementById('aboutTitleDisplay').textContent = storage.aboutTitle;
-            document.getElementById('aboutTextDisplay').textContent = storage.aboutText;
-            
-            // Contact information
-            document.getElementById('classAddressDisplay').textContent = storage.classAddress;
-            document.getElementById('classLocationDisplay').textContent = storage.classLocation;
-            document.getElementById('classEmailDisplay').textContent = storage.classEmail;
-            document.getElementById('teacherEmailDisplay').textContent = storage.teacherEmail;
-            document.getElementById('schoolPhoneDisplay').textContent = 'Điện thoại trường: ' + storage.schoolPhone;
-            document.getElementById('teacherPhoneDisplay').textContent = 'Giáo viên chủ nhiệm: ' + storage.teacherPhone;
-            
-            // Social media links
-            document.getElementById('facebookLink').href = storage.facebookLink;
-            document.getElementById('youtubeLink').href = storage.youtubeLink;
-            document.getElementById('instagramLink').href = storage.instagramLink;
-            document.getElementById('tiktokLink').href = storage.tiktokLink;
-            
-            document.getElementById('facebookLinkDetail').href = storage.facebookLink;
-            document.getElementById('youtubeLinkDetail').href = storage.youtubeLink;
-            document.getElementById('instagramLinkDetail').href = storage.instagramLink;
-            document.getElementById('tiktokLinkDetail').href = storage.tiktokLink;
-            
-            // Footer content
-            document.getElementById('footerTitleDisplay').textContent = storage.footerTitle;
-            document.getElementById('footerDescriptionDisplay').textContent = storage.footerDescription;
-            document.getElementById('footerSloganDisplay').textContent = storage.footerSlogan;
-            document.getElementById('copyrightText').textContent = storage.copyrightText;
-            
-            document.getElementById('footerTitleDisplayDetail').textContent = storage.footerTitle;
-            document.getElementById('footerDescriptionDisplayDetail').textContent = storage.footerDescription;
-            document.getElementById('footerSloganDisplayDetail').textContent = storage.footerSlogan;
-            document.getElementById('copyrightTextDetail').textContent = storage.copyrightText;
-            
-            // Admin panel values
-            document.getElementById('adminClassName').value = storage.className;
-            document.getElementById('adminSchoolName').value = storage.schoolName;
+            // Update admin panel values
+            document.getElementById('adminClassName').value = storage.siteTitle;
             document.getElementById('adminClassSize').value = storage.classSize;
             document.getElementById('adminTeacherName').value = storage.teacherName;
             document.getElementById('adminHeroTitle').value = storage.heroTitle;
             document.getElementById('adminHeroDescription').value = storage.heroDescription;
-            document.getElementById('adminAboutTitle').value = storage.aboutTitle;
-            document.getElementById('adminAboutText').value = storage.aboutText;
-            document.getElementById('adminClassAddress').value = storage.classAddress;
-            document.getElementById('adminClassLocation').value = storage.classLocation;
-            document.getElementById('adminClassEmail').value = storage.classEmail;
-            document.getElementById('adminTeacherEmail').value = storage.teacherEmail;
-            document.getElementById('adminSchoolPhone').value = storage.schoolPhone;
-            document.getElementById('adminTeacherPhone').value = storage.teacherPhone;
-            document.getElementById('adminFacebookLink').value = storage.facebookLink;
-            document.getElementById('adminYoutubeLink').value = storage.youtubeLink;
-            document.getElementById('adminInstagramLink').value = storage.instagramLink;
-            document.getElementById('adminTiktokLink').value = storage.tiktokLink;
-            document.getElementById('adminFooterTitle').value = storage.footerTitle;
+            document.getElementById('adminSiteSlogan').value = storage.siteSlogan;
+            document.getElementById('adminContactEmail').value = storage.contactEmail;
+            document.getElementById('adminContactPhone').value = storage.contactPhone;
             document.getElementById('adminFooterDescription').value = storage.footerDescription;
-            document.getElementById('adminFooterSlogan').value = storage.footerSlogan;
-            document.getElementById('adminCopyrightText').value = storage.copyrightText;
+            document.getElementById('adminFacebookLink').value = storage.socialLinks.facebook;
+            document.getElementById('adminYoutubeLink').value = storage.socialLinks.youtube;
+            document.getElementById('adminInstagramLink').value = storage.socialLinks.instagram;
+            document.getElementById('adminTiktokLink').value = storage.socialLinks.tiktok;
             
-            // Logo preview in admin
-            const logoPreviewImage = document.getElementById('logoPreviewImage');
-            if (storage.logo) {
-                logoPreviewImage.src = storage.logo;
-                document.getElementById('logoPreview').style.display = 'block';
-            }
+            // Update notification count
+            updateNotificationCount();
         }
         
-        // Update account link text based on login status
-        function updateAccountLink() {
+        // Update login button text
+        function updateLoginButton() {
             if (storage.currentUser) {
-                accountLinkText.textContent = storage.currentUser.username;
+                loginBtn.textContent = storage.currentUser.username;
+                if (postDetailLoginBtn) {
+                    postDetailLoginBtn.textContent = storage.currentUser.username;
+                }
             } else {
-                accountLinkText.textContent = 'Tài khoản';
+                loginBtn.textContent = 'Đăng Nhập';
+                if (postDetailLoginBtn) {
+                    postDetailLoginBtn.textContent = 'Đăng Nhập';
+                }
             }
         }
         
-        // Load posts to the website with pagination
+        // Update notification count
+        function updateNotificationCount() {
+            const unreadCount = storage.messages.filter(m => !m.read).length;
+            notificationCount.textContent = unreadCount;
+            if (unreadCount > 0) {
+                adminNotificationBadge.textContent = unreadCount;
+                adminNotificationBadge.style.display = 'inline-block';
+            } else {
+                adminNotificationBadge.style.display = 'none';
+            }
+        }
+        
+        // Load posts
         function loadPosts(page = 1) {
             storage.currentPage = page;
             const postsContainer = document.getElementById('postsContainer');
             const paginationContainer = document.getElementById('pagination');
             
             // Filter only published posts for public view
-            const publishedPosts = storage.posts.filter(post => post.status === 'published');
+            const publishedPosts = storage.posts.filter(post => post.status === 'approved');
             
             // Sort by date (newest first)
             publishedPosts.sort((a, b) => new Date(b.date) - new Date(a.date));
@@ -1934,23 +1589,17 @@
             
             postsToShow.forEach(post => {
                 const postElement = document.createElement('div');
-                postElement.className = 'post-card';
+                postElement.className = 'post-card glass';
                 postElement.innerHTML = `
-                    ${post.image ? `
-                    <div class="post-image">
-                        <img src="${post.image}" alt="${post.title}">
+                    ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-img">` : ''}
+                    <div class="post-date">
+                        <i class="far fa-calendar"></i> ${post.date}
                     </div>
-                    ` : ''}
-                    <div class="post-content">
-                        <div class="post-date">
-                            <i class="far fa-calendar"></i> ${post.date}
-                        </div>
-                        <h3 class="post-title">${post.title}</h3>
-                        <p class="post-excerpt">${post.content.substring(0, 150)}...</p>
-                        <a href="#" class="read-more" data-post-slug="${post.slug}">
-                            Đọc thêm <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
+                    <h3 class="post-title">${post.title}</h3>
+                    <p class="post-excerpt">${post.content.substring(0, 150)}...</p>
+                    <a href="#" class="read-more" data-post-slug="${post.slug}">
+                        Đọc thêm <i class="fas fa-arrow-right"></i>
+                    </a>
                 `;
                 postsContainer.appendChild(postElement);
             });
@@ -2023,7 +1672,7 @@
         
         // Load admin posts
         function loadAdminPosts() {
-            const adminPostsList = document.getElementById('postsList');
+            const adminPostsList = document.getElementById('adminPostsList');
             adminPostsList.innerHTML = '';
             
             // Sort by date (newest first)
@@ -2034,16 +1683,16 @@
                 postElement.className = 'post-editor';
                 postElement.innerHTML = `
                     <h4>${post.title} 
-                        <span class="post-status ${post.status === 'published' ? 'status-published' : 'status-pending'}">
-                            ${post.status === 'published' ? 'Đã đăng' : 'Chờ duyệt'}
+                        <span class="post-status ${post.status === 'approved' ? 'status-approved' : 'status-pending'}">
+                            ${post.status === 'approved' ? 'Đã đăng' : 'Chờ duyệt'}
                         </span>
                     </h4>
                     <p>${post.content.substring(0, 100)}...</p>
                     <div style="display: flex; justify-content: space-between; margin-top: 15px;">
                         <span><i class="far fa-calendar"></i> ${post.date} | <i class="fas fa-user"></i> ${post.author}</span>
                         <div>
-                            ${post.status === 'pending' ? `<button class="btn btn-small" style="background: var(--success-color); margin-right: 10px;" data-post-id="${post.id}" data-action="approve">Duyệt</button>` : ''}
-                            <button class="btn btn-small" style="background: var(--accent-color);" data-post-id="${post.id}" data-action="delete">Xóa</button>
+                            ${post.status === 'pending' ? `<button class="admin-btn btn-small success" data-post-id="${post.id}" data-action="approve">Duyệt</button>` : ''}
+                            <button class="admin-btn btn-small danger" data-post-id="${post.id}" data-action="delete">Xóa</button>
                         </div>
                     </div>
                 `;
@@ -2051,7 +1700,7 @@
             });
             
             // Add event listeners
-            document.querySelectorAll('#postsList .btn').forEach(btn => {
+            document.querySelectorAll('#adminPostsList .admin-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const postId = parseInt(this.getAttribute('data-post-id'));
                     const action = this.getAttribute('data-action');
@@ -2067,24 +1716,24 @@
         
         // Show post detail page
         function showPostDetail(postSlug) {
-            const post = storage.posts.find(p => p.slug === postSlug && p.status === 'published');
+            const post = storage.posts.find(p => p.slug === postSlug && p.status === 'approved');
             
             if (!post) {
                 alert('Bài đăng không tồn tại hoặc chưa được duyệt!');
                 return;
             }
             
-            // Hide main website, show post detail page
+            // Hide main website and admin panel, show post detail page
             mainWebsite.style.display = 'none';
-            adminPage.style.display = 'none';
+            adminPanel.style.display = 'none';
             postDetailPage.style.display = 'block';
             
             // Update URL without reloading page
             history.pushState({ postSlug }, '', `?post=${postSlug}`);
             
             // Load post detail
-            const postDetailContainer = document.getElementById('postDetailContainer');
-            postDetailContainer.innerHTML = `
+            const postDetailContent = document.getElementById('postDetailContent');
+            postDetailContent.innerHTML = `
                 <div class="post-detail-header">
                     <h1 class="post-detail-title">${post.title}</h1>
                     <div class="post-detail-meta">
@@ -2093,32 +1742,18 @@
                     </div>
                 </div>
                 
-                ${post.image ? `
-                <div class="post-detail-image">
-                    <img src="${post.image}" alt="${post.title}">
-                </div>
-                ` : ''}
+                ${post.image ? `<img src="${post.image}" alt="${post.title}" class="post-detail-image">` : ''}
                 
                 <div class="post-detail-content">
                     ${post.content.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('')}
                 </div>
-                
-                <div style="text-align: center; margin-top: 40px;">
-                    <a href="#" id="backToPosts" class="btn"><i class="fas fa-arrow-left"></i> Quay lại danh sách bài đăng</a>
-                </div>
             `;
-            
-            // Add event listener for back button
-            document.getElementById('backToPosts').addEventListener('click', function(e) {
-                e.preventDefault();
-                goBackToMain();
-            });
         }
         
         // Go back to main website
         function goBackToMain() {
             postDetailPage.style.display = 'none';
-            adminPage.style.display = 'none';
+            adminPanel.style.display = 'none';
             mainWebsite.style.display = 'block';
             
             // Update URL
@@ -2128,53 +1763,50 @@
         // Load schedule
         function loadSchedule() {
             const scheduleBody = document.getElementById('scheduleBody');
-            scheduleBody.innerHTML = '';
+            const scheduleEditor = document.getElementById('scheduleEditor');
             
-            storage.schedule.forEach(day => {
+            // Load schedule for public view
+            scheduleBody.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
                 const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td><strong>${day.day}</strong></td>
-                    <td><span class="subject">${day.lesson1}</span></td>
-                    <td><span class="subject">${day.lesson2}</span></td>
-                    <td><span class="subject">${day.lesson3}</span></td>
-                    <td><span class="subject">${day.lesson4}</span></td>
-                    <td><span class="subject">${day.lesson5}</span></td>
-                `;
+                row.innerHTML = `<td>Tiết ${i+1}</td>`;
+                
+                for (let j = 0; j < 5; j++) {
+                    row.innerHTML += `<td>${storage.schedule[i][j]}</td>`;
+                }
+                
                 scheduleBody.appendChild(row);
-            });
+            }
             
             // Load schedule editor in admin
-            const scheduleEditor = document.getElementById('scheduleEditor');
             scheduleEditor.innerHTML = '';
-            
-            storage.schedule.forEach((day, index) => {
-                const dayEditor = document.createElement('div');
-                dayEditor.className = 'admin-form-grid';
-                dayEditor.innerHTML = `
-                    <h4 style="grid-column: 1 / -1; color: white; margin-bottom: 10px;">${day.day}</h4>
+            for (let i = 0; i < 5; i++) {
+                const rowDiv = document.createElement('div');
+                rowDiv.className = 'form-row';
+                rowDiv.innerHTML = `
                     <div class="form-group">
-                        <label>Tiết 1</label>
-                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="1" value="${day.lesson1}">
+                        <label>Tiết ${i+1} - Thứ 2</label>
+                        <input type="text" class="form-control schedule-input" data-row="${i}" data-col="0" value="${storage.schedule[i][0]}">
                     </div>
                     <div class="form-group">
-                        <label>Tiết 2</label>
-                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="2" value="${day.lesson2}">
+                        <label>Tiết ${i+1} - Thứ 3</label>
+                        <input type="text" class="form-control schedule-input" data-row="${i}" data-col="1" value="${storage.schedule[i][1]}">
                     </div>
                     <div class="form-group">
-                        <label>Tiết 3</label>
-                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="3" value="${day.lesson3}">
+                        <label>Tiết ${i+1} - Thứ 4</label>
+                        <input type="text" class="form-control schedule-input" data-row="${i}" data-col="2" value="${storage.schedule[i][2]}">
                     </div>
                     <div class="form-group">
-                        <label>Tiết 4</label>
-                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="4" value="${day.lesson4}">
+                        <label>Tiết ${i+1} - Thứ 5</label>
+                        <input type="text" class="form-control schedule-input" data-row="${i}" data-col="3" value="${storage.schedule[i][3]}">
                     </div>
                     <div class="form-group">
-                        <label>Tiết 5</label>
-                        <input type="text" class="schedule-input" data-day="${index}" data-lesson="5" value="${day.lesson5}">
+                        <label>Tiết ${i+1} - Thứ 6</label>
+                        <input type="text" class="form-control schedule-input" data-row="${i}" data-col="4" value="${storage.schedule[i][4]}">
                     </div>
                 `;
-                scheduleEditor.appendChild(dayEditor);
-            });
+                scheduleEditor.appendChild(rowDiv);
+            }
         }
         
         // Load notifications
@@ -2183,96 +1815,65 @@
             
             adminNotificationsList.innerHTML = '';
             
-            if (storage.notifications.length === 0) {
+            if (storage.messages.length === 0) {
                 adminNotificationsList.innerHTML = '<p style="text-align: center; color: white;">Chưa có tin nhắn nào.</p>';
                 return;
             }
             
             // Sort notifications by date (newest first)
-            const sortedNotifications = [...storage.notifications].sort((a, b) => new Date(b.date) - new Date(a.date));
+            const sortedMessages = [...storage.messages].sort((a, b) => new Date(b.date) - new Date(a.date));
             
-            sortedNotifications.forEach(notification => {
-                const adminNotificationElement = document.createElement('div');
-                adminNotificationElement.className = 'post-editor';
-                adminNotificationElement.style.marginBottom = '15px';
-                adminNotificationElement.innerHTML = `
-                    <h4>${notification.name}</h4>
-                    <p><strong>Email:</strong> ${notification.email}</p>
-                    <p>${notification.message}</p>
-                    <div style="display: flex; justify-content: space-between; margin-top: 15px;">
-                        <span style="color: white;"><i class="far fa-clock"></i> ${notification.date}</span>
-                        <button class="btn btn-small" style="background: ${notification.read ? 'var(--secondary-color)' : 'var(--accent-color)'};" data-notification-id="${notification.id}">
-                            ${notification.read ? 'Đã đọc' : 'Đánh dấu đã đọc'}
-                        </button>
-                    </div>
+            sortedMessages.forEach(message => {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message-item ${message.read ? '' : 'unread'}`;
+                messageElement.innerHTML = `
+                    <div class="message-sender">${message.name} &lt;${message.email}&gt;</div>
+                    <div class="message-preview">${message.content.substring(0, 100)}...</div>
+                    <div style="font-size: 0.9rem; color: rgba(255,255,255,0.6); margin-top: 5px;">${message.date}</div>
                 `;
-                adminNotificationsList.appendChild(adminNotificationElement);
-            });
-            
-            // Add event listeners for mark as read buttons
-            document.querySelectorAll('#adminNotificationsList .btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const notificationId = this.getAttribute('data-notification-id');
-                    markNotificationAsRead(notificationId);
+                
+                messageElement.addEventListener('click', function() {
+                    if (!message.read) {
+                        message.read = true;
+                        saveToLocalStorage();
+                        updateNotificationCount();
+                        this.classList.remove('unread');
+                    }
+                    
+                    alert(`Tin nhắn từ: ${message.name}\nEmail: ${message.email}\nNgày: ${message.date}\n\nNội dung:\n${message.content}`);
                 });
+                
+                adminNotificationsList.appendChild(messageElement);
             });
-            
-            // Update notification badge in admin panel
-            const unreadCount = storage.notifications.filter(n => !n.read).length;
-            if (unreadCount > 0) {
-                document.getElementById('adminNotificationBadge').textContent = unreadCount;
-                document.getElementById('adminNotificationBadge').style.display = 'inline-block';
-            } else {
-                document.getElementById('adminNotificationBadge').style.display = 'none';
-            }
         }
         
         // Load users
         function loadUsers() {
-            const usersList = document.getElementById('usersList');
-            usersList.innerHTML = '';
+            const adminUsersList = document.getElementById('adminUsersList');
+            adminUsersList.innerHTML = '';
             
-            // Sort users: admin first, then ctv, then user
-            const sortedUsers = [...storage.users].sort((a, b) => {
-                const roleOrder = { admin: 1, ctv: 2, user: 3 };
-                return roleOrder[a.role] - roleOrder[b.role];
-            });
-            
-            sortedUsers.forEach(user => {
-                let roleText = '';
-                let roleClass = '';
-                
-                if (user.role === 'admin') {
-                    roleText = 'Quản trị viên';
-                    roleClass = 'role-admin';
-                } else if (user.role === 'ctv') {
-                    roleText = 'Cộng tác viên';
-                    roleClass = 'role-ctv';
-                } else {
-                    roleText = 'Người dùng';
-                    roleClass = 'role-user';
-                }
-                
+            storage.users.forEach(user => {
                 const userElement = document.createElement('div');
                 userElement.className = 'user-item';
                 userElement.innerHTML = `
                     <div>
-                        <strong>${user.username}</strong>
-                        <div class="user-role ${roleClass}">
-                            ${roleText}
+                        <strong style="color: white;">${user.username}</strong>
+                        <div class="user-role role-${user.role}">
+                            ${user.role === 'admin' ? 'Quản trị viên' : user.role === 'ctv' ? 'Cộng tác viên' : 'Người dùng'}
                         </div>
+                        <div style="font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-top: 5px;">Tạo ngày: ${user.created}</div>
                     </div>
                     <div>
                         ${user.username !== 'admin' ? `
-                        <button class="btn btn-small" style="background: var(--accent-color);" data-username="${user.username}" data-action="delete">Xóa</button>
+                        <button class="admin-btn btn-small danger" data-username="${user.username}" data-action="delete">Xóa</button>
                         ` : ''}
                     </div>
                 `;
-                usersList.appendChild(userElement);
+                adminUsersList.appendChild(userElement);
             });
             
             // Add event listeners
-            document.querySelectorAll('#usersList .btn').forEach(btn => {
+            document.querySelectorAll('#adminUsersList .admin-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
                     const username = this.getAttribute('data-username');
                     const action = this.getAttribute('data-action');
@@ -2288,7 +1889,7 @@
         function deletePost(postId) {
             if (confirm('Bạn có chắc chắn muốn xóa bài đăng này?')) {
                 storage.posts = storage.posts.filter(post => post.id !== postId);
-                localStorage.setItem('posts', JSON.stringify(storage.posts));
+                saveToLocalStorage();
                 loadPosts(storage.currentPage);
                 loadAdminPosts();
             }
@@ -2298,8 +1899,8 @@
         function approvePost(postId) {
             const postIndex = storage.posts.findIndex(post => post.id === postId);
             if (postIndex !== -1) {
-                storage.posts[postIndex].status = 'published';
-                localStorage.setItem('posts', JSON.stringify(storage.posts));
+                storage.posts[postIndex].status = 'approved';
+                saveToLocalStorage();
                 loadPosts(storage.currentPage);
                 loadAdminPosts();
                 alert('Bài đăng đã được duyệt!');
@@ -2321,18 +1922,8 @@
             
             if (confirm(`Bạn có chắc chắn muốn xóa tài khoản ${username}?`)) {
                 storage.users = storage.users.filter(user => user.username !== username);
-                localStorage.setItem('users', JSON.stringify(storage.users));
+                saveToLocalStorage();
                 loadUsers();
-            }
-        }
-        
-        // Mark notification as read
-        function markNotificationAsRead(notificationId) {
-            const notificationIndex = storage.notifications.findIndex(n => n.id == notificationId);
-            if (notificationIndex !== -1) {
-                storage.notifications[notificationIndex].read = true;
-                localStorage.setItem('notifications', JSON.stringify(storage.notifications));
-                loadNotifications();
             }
         }
         
@@ -2346,96 +1937,53 @@
                 .replace(/\s+/g, '-');
         }
         
-        // Get role text
-        function getRoleText(role) {
-            switch(role) {
-                case 'admin': return 'Quản trị viên';
-                case 'ctv': return 'Cộng tác viên';
-                case 'user': return 'Người dùng';
-                default: return 'Người dùng';
-            }
+        // Save all data to localStorage
+        function saveToLocalStorage() {
+            localStorage.setItem('logo', storage.logo);
+            localStorage.setItem('siteTitle', storage.siteTitle);
+            localStorage.setItem('siteSlogan', storage.siteSlogan);
+            localStorage.setItem('heroTitle', storage.heroTitle);
+            localStorage.setItem('heroDescription', storage.heroDescription);
+            localStorage.setItem('classSize', storage.classSize);
+            localStorage.setItem('teacherName', storage.teacherName);
+            localStorage.setItem('contactEmail', storage.contactEmail);
+            localStorage.setItem('contactPhone', storage.contactPhone);
+            localStorage.setItem('footerDescription', storage.footerDescription);
+            localStorage.setItem('socialLinks', JSON.stringify(storage.socialLinks));
+            localStorage.setItem('posts', JSON.stringify(storage.posts));
+            localStorage.setItem('schedule', JSON.stringify(storage.schedule));
+            localStorage.setItem('messages', JSON.stringify(storage.messages));
+            localStorage.setItem('users', JSON.stringify(storage.users));
         }
         
         // Event Listeners
         document.addEventListener('DOMContentLoaded', initWebsite);
         
-        // Mobile menu toggle for main website
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-        
-        // Mobile menu toggle for post detail page
-        const mobileMenuBtnDetail = document.getElementById('mobileMenuBtnDetail');
-        const navMenuDetail = document.getElementById('navMenuDetail');
-        
-        if (mobileMenuBtnDetail) {
-            mobileMenuBtnDetail.addEventListener('click', () => {
-                navMenuDetail.classList.toggle('active');
-                mobileMenuBtnDetail.innerHTML = navMenuDetail.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-        }
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('nav ul li a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (navMenu) navMenu.classList.remove('active');
-                if (navMenuDetail) navMenuDetail.classList.remove('active');
-                if (mobileMenuBtn) mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                if (mobileMenuBtnDetail) mobileMenuBtnDetail.innerHTML = '<i class="fas fa-bars"></i>';
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') return;
-                
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Account link click
-        accountLink.addEventListener('click', (e) => {
-            e.preventDefault();
+        // Login button click
+        loginBtn.addEventListener('click', () => {
             if (storage.currentUser) {
-                // Nếu đã đăng nhập, đăng xuất
-                storage.currentUser = null;
-                localStorage.removeItem('loggedInUser');
-                updateAccountLink();
-                alert('Đã đăng xuất!');
+                // If already logged in, show admin panel
+                showAdminPanel();
             } else {
-                // Nếu chưa đăng nhập, hiển thị modal đăng nhập
+                // If not logged in, show login modal
                 loginModal.classList.add('active');
             }
         });
         
-        accountLinkDetail.addEventListener('click', (e) => {
-            e.preventDefault();
-            loginModal.classList.add('active');
-        });
+        // Post detail login button
+        if (postDetailLoginBtn) {
+            postDetailLoginBtn.addEventListener('click', () => {
+                loginModal.classList.add('active');
+            });
+        }
         
         // Back to home button
-        backToHome.addEventListener('click', (e) => {
-            e.preventDefault();
-            goBackToMain();
-        });
+        if (backToHomeBtn) {
+            backToHomeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                goBackToMain();
+            });
+        }
         
         // Handle browser back button
         window.addEventListener('popstate', function(event) {
@@ -2446,18 +1994,38 @@
             }
         });
         
-        // Close modal
-        closeLoginModal.addEventListener('click', () => {
+        // Close modals
+        document.getElementById('closeLoginModal').addEventListener('click', () => {
             loginModal.classList.remove('active');
+        });
+        
+        document.getElementById('closeRegisterModal').addEventListener('click', () => {
+            registerModal.classList.remove('active');
         });
         
         // Click outside modal to close
         window.addEventListener('click', (e) => {
             if (e.target === loginModal) loginModal.classList.remove('active');
+            if (e.target === registerModal) registerModal.classList.remove('active');
         });
         
-        // Login
-        loginBtn.addEventListener('click', () => {
+        // Switch between login and register modals
+        showRegister.addEventListener('click', (e) => {
+            e.preventDefault();
+            loginModal.classList.remove('active');
+            registerModal.classList.add('active');
+        });
+        
+        showLogin.addEventListener('click', (e) => {
+            e.preventDefault();
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+        });
+        
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
             const username = document.getElementById('loginUsername').value;
             const password = document.getElementById('loginPassword').value;
             
@@ -2467,61 +2035,100 @@
                 storage.currentUser = user;
                 localStorage.setItem('loggedInUser', JSON.stringify(user));
                 loginModal.classList.remove('active');
-                updateAccountLink();
+                updateLoginButton();
+                
+                // Show admin panel if user is admin or ctv
+                if (user.role === 'admin' || user.role === 'ctv') {
+                    showAdminPanel();
+                } else {
+                    alert('Đăng nhập thành công! Bạn là người dùng thông thường.');
+                }
                 
                 // Clear form
                 document.getElementById('loginUsername').value = '';
                 document.getElementById('loginPassword').value = '';
-                
-                // Show admin panel if user is admin or ctv
-                if (user.role === 'admin' || user.role === 'ctv') {
-                    mainWebsite.style.display = 'none';
-                    postDetailPage.style.display = 'none';
-                    adminPage.style.display = 'block';
-                    document.getElementById('adminUsernameDisplay').textContent = `Xin chào, ${user.username} (${getRoleText(user.role)})`;
-                    
-                    // Load data for admin panel
-                    loadAdminPosts();
-                    loadUsers();
-                    loadNotifications();
-                    
-                    // Hide users tab if not admin
-                    if (user.role !== 'admin') {
-                        document.getElementById('usersTab').style.display = 'none';
-                    } else {
-                        document.getElementById('usersTab').style.display = 'block';
-                    }
-                } else {
-                    alert('Đăng nhập thành công! Bạn là người dùng thông thường.');
-                }
             } else {
                 alert('Tên đăng nhập hoặc mật khẩu không đúng!');
             }
         });
         
-        // Contact form submission
-        contactForm.addEventListener('submit', (e) => {
+        // Register form submission
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+            const username = document.getElementById('registerUsername').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('registerConfirmPassword').value;
             
-            // Create new notification
-            const newNotification = {
-                id: Date.now(),
+            if (!username || !password || !confirmPassword) {
+                alert('Vui lòng nhập đầy đủ thông tin!');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Mật khẩu xác nhận không khớp!');
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Mật khẩu phải có ít nhất 6 ký tự!');
+                return;
+            }
+            
+            // Check if username already exists
+            if (storage.users.find(u => u.username === username)) {
+                alert('Tên đăng nhập đã tồn tại!');
+                return;
+            }
+            
+            // Add new user with default role 'user'
+            const newUser = {
+                id: storage.users.length > 0 ? Math.max(...storage.users.map(u => u.id)) + 1 : 1,
+                username,
+                password,
+                role: 'user',
+                created: new Date().toLocaleDateString('vi-VN')
+            };
+            
+            storage.users.push(newUser);
+            saveToLocalStorage();
+            
+            alert('Đăng ký tài khoản thành công! Vui lòng đăng nhập.');
+            registerModal.classList.remove('active');
+            loginModal.classList.add('active');
+            
+            // Clear form
+            document.getElementById('registerUsername').value = '';
+            document.getElementById('registerPassword').value = '';
+            document.getElementById('registerConfirmPassword').value = '';
+        });
+        
+        // Contact form submission
+        document.getElementById('messageForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('senderName').value;
+            const email = document.getElementById('senderEmail').value;
+            const content = document.getElementById('messageContent').value;
+            
+            // Create new message
+            const newMessage = {
+                id: storage.messages.length > 0 ? Math.max(...storage.messages.map(m => m.id)) + 1 : 1,
                 name,
                 email,
-                message,
-                date: new Date().toLocaleDateString('vi-VN') + ' ' + new Date().toLocaleTimeString('vi-VN', {hour: '2-digit', minute:'2-digit'}),
+                content,
+                date: new Date().toLocaleDateString('vi-VN'),
                 read: false
             };
             
-            storage.notifications.push(newNotification);
-            localStorage.setItem('notifications', JSON.stringify(storage.notifications));
+            storage.messages.unshift(newMessage);
+            saveToLocalStorage();
             
             alert('Cảm ơn bạn đã gửi tin nhắn! Tin nhắn của bạn đã được gửi đến quản trị viên.');
-            contactForm.reset();
+            document.getElementById('messageForm').reset();
+            
+            // Update notification count
+            updateNotificationCount();
             
             // Reload notifications if admin is logged in
             if (storage.currentUser && (storage.currentUser.role === 'admin' || storage.currentUser.role === 'ctv')) {
@@ -2529,11 +2136,42 @@
             }
         });
         
-        // Admin panel functionality
+        // Show admin panel
+        function showAdminPanel() {
+            mainWebsite.style.display = 'none';
+            postDetailPage.style.display = 'none';
+            adminPanel.style.display = 'block';
+            document.getElementById('adminUsername').textContent = `Xin chào, ${storage.currentUser.username}`;
+            
+            // Hide users tab if not admin
+            if (storage.currentUser.role !== 'admin') {
+                document.getElementById('usersTab').style.display = 'none';
+            } else {
+                document.getElementById('usersTab').style.display = 'block';
+            }
+            
+            // Load data for admin panel
+            loadAdminPosts();
+            loadUsers();
+            loadNotifications();
+        }
+        
+        // Logout from admin panel
+        logoutAdminBtn.addEventListener('click', () => {
+            storage.currentUser = null;
+            localStorage.removeItem('loggedInUser');
+            updateLoginButton();
+            
+            adminPanel.style.display = 'none';
+            mainWebsite.style.display = 'block';
+            
+            alert('Đã đăng xuất thành công!');
+        });
+        
+        // Admin panel tab switching
         const adminTabs = document.querySelectorAll('.admin-tab');
         const adminSections = document.querySelectorAll('.admin-section');
         
-        // Tab switching
         adminTabs.forEach(tab => {
             tab.addEventListener('click', () => {
                 const tabId = tab.getAttribute('data-tab');
@@ -2561,51 +2199,31 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const logoPreview = document.getElementById('logoPreview');
-                    const logoPreviewImage = document.getElementById('logoPreviewImage');
-                    
-                    logoPreviewImage.src = e.target.result;
-                    logoPreview.style.display = 'block';
-                    
-                    // Save to storage immediately
                     storage.logo = e.target.result;
-                    localStorage.setItem('logo', e.target.result);
-                    
-                    // Update UI
-                    updateUIFromStorage();
+                    document.getElementById('logoPreviewImage').src = e.target.result;
+                    document.getElementById('logoPreview').style.display = 'block';
                 };
                 reader.readAsDataURL(file);
             }
         });
         
-        // Save logo button
+        // Save logo
         document.getElementById('saveLogoBtn').addEventListener('click', () => {
+            saveToLocalStorage();
+            updateUIFromStorage();
             alert('Logo đã được lưu thành công!');
         });
         
         // Save general information
         document.getElementById('saveGeneralBtn').addEventListener('click', () => {
-            // Update storage
-            storage.className = document.getElementById('adminClassName').value;
-            storage.schoolName = document.getElementById('adminSchoolName').value;
+            storage.siteTitle = document.getElementById('adminClassName').value;
             storage.classSize = document.getElementById('adminClassSize').value;
             storage.teacherName = document.getElementById('adminTeacherName').value;
             storage.heroTitle = document.getElementById('adminHeroTitle').value;
             storage.heroDescription = document.getElementById('adminHeroDescription').value;
-            storage.aboutTitle = document.getElementById('adminAboutTitle').value;
-            storage.aboutText = document.getElementById('adminAboutText').value;
+            storage.siteSlogan = document.getElementById('adminSiteSlogan').value;
             
-            // Save to localStorage
-            localStorage.setItem('className', storage.className);
-            localStorage.setItem('schoolName', storage.schoolName);
-            localStorage.setItem('classSize', storage.classSize);
-            localStorage.setItem('teacherName', storage.teacherName);
-            localStorage.setItem('heroTitle', storage.heroTitle);
-            localStorage.setItem('heroDescription', storage.heroDescription);
-            localStorage.setItem('aboutTitle', storage.aboutTitle);
-            localStorage.setItem('aboutText', storage.aboutText);
-            
-            // Update UI
+            saveToLocalStorage();
             updateUIFromStorage();
             alert('Đã lưu thông tin thành công!');
         });
@@ -2625,12 +2243,9 @@
             if (file) {
                 const reader = new FileReader();
                 reader.onload = function(e) {
-                    const postImagePreview = document.getElementById('postImagePreview');
-                    const postImagePreviewImage = document.getElementById('postImagePreviewImage');
-                    
-                    postImagePreviewImage.src = e.target.result;
-                    postImagePreview.style.display = 'block';
                     postImageData = e.target.result;
+                    document.getElementById('postImagePreviewImage').src = e.target.result;
+                    document.getElementById('postImagePreview').style.display = 'block';
                 };
                 reader.readAsDataURL(file);
             }
@@ -2649,12 +2264,12 @@
             // Determine post status based on user role
             let status = 'pending';
             if (storage.currentUser && storage.currentUser.role === 'admin') {
-                status = 'published';
+                status = 'approved';
             }
             
             // Create new post
             const newPost = {
-                id: Date.now(),
+                id: storage.posts.length > 0 ? Math.max(...storage.posts.map(p => p.id)) + 1 : 1,
                 title,
                 content,
                 image: postImageData,
@@ -2665,7 +2280,7 @@
             };
             
             storage.posts.unshift(newPost);
-            localStorage.setItem('posts', JSON.stringify(storage.posts));
+            saveToLocalStorage();
             
             // Clear form
             document.getElementById('postTitle').value = '';
@@ -2689,59 +2304,29 @@
             const inputs = document.querySelectorAll('.schedule-input');
             
             inputs.forEach(input => {
-                const dayIndex = parseInt(input.getAttribute('data-day'));
-                const lesson = input.getAttribute('data-lesson');
+                const row = parseInt(input.getAttribute('data-row'));
+                const col = parseInt(input.getAttribute('data-col'));
                 const value = input.value;
                 
-                if (lesson === '1') storage.schedule[dayIndex].lesson1 = value;
-                else if (lesson === '2') storage.schedule[dayIndex].lesson2 = value;
-                else if (lesson === '3') storage.schedule[dayIndex].lesson3 = value;
-                else if (lesson === '4') storage.schedule[dayIndex].lesson4 = value;
-                else if (lesson === '5') storage.schedule[dayIndex].lesson5 = value;
+                storage.schedule[row][col] = value;
             });
             
-            localStorage.setItem('schedule', JSON.stringify(storage.schedule));
-            
-            // Update UI
+            saveToLocalStorage();
             loadSchedule();
             alert('Thời khóa biểu đã được lưu thành công!');
         });
         
         // Save contact information
         document.getElementById('saveContactBtn').addEventListener('click', () => {
-            // Update storage
-            storage.classAddress = document.getElementById('adminClassAddress').value;
-            storage.classLocation = document.getElementById('adminClassLocation').value;
-            storage.classEmail = document.getElementById('adminClassEmail').value;
-            storage.teacherEmail = document.getElementById('adminTeacherEmail').value;
-            storage.schoolPhone = document.getElementById('adminSchoolPhone').value;
-            storage.teacherPhone = document.getElementById('adminTeacherPhone').value;
-            storage.facebookLink = document.getElementById('adminFacebookLink').value;
-            storage.youtubeLink = document.getElementById('adminYoutubeLink').value;
-            storage.instagramLink = document.getElementById('adminInstagramLink').value;
-            storage.tiktokLink = document.getElementById('adminTiktokLink').value;
-            storage.footerTitle = document.getElementById('adminFooterTitle').value;
+            storage.contactEmail = document.getElementById('adminContactEmail').value;
+            storage.contactPhone = document.getElementById('adminContactPhone').value;
             storage.footerDescription = document.getElementById('adminFooterDescription').value;
-            storage.footerSlogan = document.getElementById('adminFooterSlogan').value;
-            storage.copyrightText = document.getElementById('adminCopyrightText').value;
+            storage.socialLinks.facebook = document.getElementById('adminFacebookLink').value;
+            storage.socialLinks.youtube = document.getElementById('adminYoutubeLink').value;
+            storage.socialLinks.instagram = document.getElementById('adminInstagramLink').value;
+            storage.socialLinks.tiktok = document.getElementById('adminTiktokLink').value;
             
-            // Save to localStorage
-            localStorage.setItem('classAddress', storage.classAddress);
-            localStorage.setItem('classLocation', storage.classLocation);
-            localStorage.setItem('classEmail', storage.classEmail);
-            localStorage.setItem('teacherEmail', storage.teacherEmail);
-            localStorage.setItem('schoolPhone', storage.schoolPhone);
-            localStorage.setItem('teacherPhone', storage.teacherPhone);
-            localStorage.setItem('facebookLink', storage.facebookLink);
-            localStorage.setItem('youtubeLink', storage.youtubeLink);
-            localStorage.setItem('instagramLink', storage.instagramLink);
-            localStorage.setItem('tiktokLink', storage.tiktokLink);
-            localStorage.setItem('footerTitle', storage.footerTitle);
-            localStorage.setItem('footerDescription', storage.footerDescription);
-            localStorage.setItem('footerSlogan', storage.footerSlogan);
-            localStorage.setItem('copyrightText', storage.copyrightText);
-            
-            // Update UI
+            saveToLocalStorage();
             updateUIFromStorage();
             alert('Đã lưu thông tin liên hệ và mạng xã hội thành công!');
         });
@@ -2779,13 +2364,15 @@
             
             // Create new account
             const newUser = {
+                id: storage.users.length > 0 ? Math.max(...storage.users.map(u => u.id)) + 1 : 1,
                 username,
                 password,
-                role
+                role,
+                created: new Date().toLocaleDateString('vi-VN')
             };
             
             storage.users.push(newUser);
-            localStorage.setItem('users', JSON.stringify(storage.users));
+            saveToLocalStorage();
             
             // Clear form
             document.getElementById('newAccountUsername').value = '';
@@ -2795,58 +2382,41 @@
             // Reload users list
             loadUsers();
             
-            alert(`Tài khoản ${username} đã được tạo thành công với vai trò ${getRoleText(role)}!`);
+            alert(`Tài khoản ${username} đã được tạo thành công với vai trò ${role === 'admin' ? 'Quản trị viên' : role === 'ctv' ? 'Cộng tác viên' : 'Người dùng'}!`);
         });
         
-        // Logout from admin panel
-        logoutAdminBtn.addEventListener('click', () => {
-            // Logout user
-            storage.currentUser = null;
-            localStorage.removeItem('loggedInUser');
-            updateAccountLink();
-            
-            // Switch back to main website
-            adminPage.style.display = 'none';
-            postDetailPage.style.display = 'none';
-            mainWebsite.style.display = 'block';
-            
-            alert('Đã đăng xuất thành công!');
-        });
-        
-        // Add Enter key support for login form
-        document.getElementById('loginPassword').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                loginBtn.click();
-            }
-        });
-        
-        // Add Enter key support for contact form
-        document.getElementById('message').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && e.ctrlKey) {
-                contactForm.dispatchEvent(new Event('submit'));
-            }
-        });
-        
-        // Add notification badge to header if user is admin or ctv
-        function updateHeaderNotificationBadge() {
-            const unreadCount = storage.notifications.filter(n => !n.read).length;
-            const notificationBadge = document.querySelector('.notification-badge');
-            
+        // Notification icon click
+        notificationIcon.addEventListener('click', () => {
             if (storage.currentUser && (storage.currentUser.role === 'admin' || storage.currentUser.role === 'ctv')) {
-                if (unreadCount > 0) {
-                    notificationBadge.textContent = unreadCount;
-                    notificationBadge.style.display = 'flex';
-                } else {
-                    notificationBadge.style.display = 'none';
-                }
+                showAdminPanel();
+                // Switch to notifications tab
+                adminTabs.forEach(t => t.classList.remove('active'));
+                document.querySelector('.admin-tab[data-tab="notifications"]').classList.add('active');
+                adminSections.forEach(section => section.classList.remove('active'));
+                document.getElementById('notificationsTab').classList.add('active');
             } else {
-                notificationBadge.style.display = 'none';
+                alert('Chỉ quản trị viên và cộng tác viên mới có thể xem tin nhắn!');
             }
-        }
+        });
         
-        // Call this function when notifications are updated
-        updateHeaderNotificationBadge();
-        loadNotifications(); // To update badge on initial load
+        // Add Enter key support for forms
+        document.getElementById('loginPassword')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('loginForm').dispatchEvent(new Event('submit'));
+            }
+        });
+        
+        document.getElementById('registerConfirmPassword')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('registerForm').dispatchEvent(new Event('submit'));
+            }
+        });
+        
+        document.getElementById('messageContent')?.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                document.getElementById('messageForm').dispatchEvent(new Event('submit'));
+            }
+        });
     </script>
 </body>
 </html>
