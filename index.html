@@ -649,6 +649,11 @@
             background: var(--success-color);
         }
 
+        .admin-btn.back-to-home {
+            background: var(--primary-color);
+            margin-right: 10px;
+        }
+
         .message-list {
             margin-top: 20px;
         }
@@ -980,6 +985,7 @@
                             <th>Thứ 4</th>
                             <th>Thứ 5</th>
                             <th>Thứ 6</th>
+                            <th>Thứ 7</th>
                         </tr>
                     </thead>
                     <tbody id="scheduleBody">
@@ -1116,6 +1122,9 @@
                 <h2><i class="fas fa-cogs"></i> Trang Quản Trị Lớp 10 Tin Học</h2>
                 <div>
                     <span style="color: white; margin-right: 15px;" id="adminUsername"></span>
+                    <button class="admin-btn btn-small back-to-home" id="backToHomeAdminBtn">
+                        <i class="fas fa-home"></i> Về trang chủ
+                    </button>
                     <button class="admin-btn btn-small" id="logoutAdminBtn">Đăng xuất</button>
                 </div>
             </div>
@@ -1335,13 +1344,13 @@
                 }
             ],
             
-            // Schedule - 5 tiết mỗi ngày
+            // Schedule - 5 tiết mỗi ngày (Thứ 2-7), dữ liệu mẫu từ file ảnh
             schedule: JSON.parse(localStorage.getItem('schedule')) || [
-                ['', 'Toán', 'Văn', 'Anh', 'Lý', 'Tin'],
-                ['Toán', 'Sử', 'Địa', 'GDCD', 'Sinh', 'Hóa'],
-                ['Văn', 'Toán', 'Tin', 'Anh', 'Thể Dục', 'Toán'],
-                ['Lý', 'Hóa', 'Văn', 'Toán', 'Anh', 'Sinh'],
-                ['Tin', 'Anh', 'Toán', 'Sử', 'Địa', 'Văn']
+                ['CHÀO CỜ', 'Sinh vật', 'Ngoại ngữ', 'Toán', 'Ngoại ngữ', 'Văn học'],
+                ['Vật lý', 'Ngoại ngữ', 'Trợ giảng', 'Tin học', 'Toán', 'Thể dục'],
+                ['Lịch sử', 'Thể dục', 'Quốc phòng', 'Tin học', 'Toán', 'Vật lý'],
+                ['Hóa học', 'Tin học', 'Tin học', 'Lịch sử', 'Văn học', 'Vật lý'],
+                ['Hóa học', 'Tin học', 'Sinh vật', 'Văn học', 'Toán', 'Vật lý']
             ],
             
             // Messages
@@ -1389,6 +1398,7 @@
         const adminNotificationBadge = document.getElementById('adminNotificationBadge');
         const logoutAdminBtn = document.getElementById('logoutAdminBtn');
         const backToHomeBtn = document.getElementById('backToHomeBtn');
+        const backToHomeAdminBtn = document.getElementById('backToHomeAdminBtn');
         
         // Initialize the website
         function initWebsite() {
@@ -1703,7 +1713,7 @@
                 const row = document.createElement('tr');
                 row.innerHTML = `<td>Tiết ${i+1}</td>`;
                 
-                for (let j = 0; j < 5; j++) {
+                for (let j = 0; j < 6; j++) { // 6 ngày: Thứ 2-7
                     row.innerHTML += `<td>${storage.schedule[i][j]}</td>`;
                 }
                 
@@ -1735,6 +1745,10 @@
                     <div class="form-group">
                         <label>Tiết ${i+1} - Thứ 6</label>
                         <input type="text" class="form-control schedule-input" data-row="${i}" data-col="4" value="${storage.schedule[i][4]}">
+                    </div>
+                    <div class="form-group">
+                        <label>Tiết ${i+1} - Thứ 7</label>
+                        <input type="text" class="form-control schedule-input" data-row="${i}" data-col="5" value="${storage.schedule[i][5]}">
                     </div>
                 `;
                 scheduleEditor.appendChild(rowDiv);
@@ -1856,6 +1870,14 @@
             backToHomeBtn.addEventListener('click', (e) => {
                 e.preventDefault();
                 goBackToMain();
+            });
+        }
+        
+        // Back to home from admin panel
+        if (backToHomeAdminBtn) {
+            backToHomeAdminBtn.addEventListener('click', () => {
+                adminPanel.style.display = 'none';
+                mainWebsite.style.display = 'block';
             });
         }
         
